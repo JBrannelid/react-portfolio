@@ -1,0 +1,53 @@
+/* CSS Based Configuration
+    In tailwind v4, instead of using javascript tailwind.config.js - 
+    all config customizations is directly done in CSS file 
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+/* Root variables */
+:root {
+    /* Light scheme ax default */
+    color-scheme: light;
+
+    /* Colors */
+    --primary-bg: #b39b91;
+    --secondary-bg: #ffffff;
+    --code-bg: #262A40;
+
+    /* Navbar specifik */
+    --nav-bg: #856455;
+    --Btn-bg: #6e4b3b;
+    --accent1-orange-color: #ffd621;
+
+    --accent-orange-color: #ec8b2a;
+    --code-text-color: #e8eef9;
+    --input-border-color: #bfbfbf;
+    --placeholder-color: #595959;
+
+    /* DarkMode */
+    --primary-dark-bg: #1e2430;
+    --dark-text: #cdcdcf;
+
+}
+
+/* Default webpage font and colors */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', 'Josefin Sans', sans-serif;
+    line-height: 1.5;
+    background: var(--primary-bg);
+    color: #ffffff;
+
+    /* Additional Utility Classes */
+    box-sizing: border-box;
+}
+
+/* Typography Styles */
+h1 {
+    font-family: 'Josefin Sans', sans-serif;
+}
