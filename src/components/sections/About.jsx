@@ -4,7 +4,7 @@ const About = () => {
   // Array of static image with belongings description. Display-order for media screen
   const polaroidImages = [
     {
-      src: "/assets/portrait/Elina.png",
+      src: "./assets/portrait/Elina.png",
       caption: "Grace in Motion",
       alt: "My daughter before balett traningsession",
       order: "lg:order-1 order-2",
@@ -15,31 +15,31 @@ const About = () => {
       order: "lg:order-2 order-1",
     },
     {
-      src: "/assets/portrait/maxi_remove_bg.png",
+      src: "./assets/portrait/maxi_remove_bg.png",
       caption: "Match Day Energy",
       alt: "My son before a football game",
       order: "lg:order-3 order-3",
     },
     {
-      src: "/assets/portrait/elina_linnea_remove_bg.png",
+      src: "./assets/portrait/elina_linnea_remove_bg.png",
       caption: "Autumn Harvest",
       alt: "Autumn Harvest with my daughter and wife",
       order: "lg:order-4 order-4",
     },
     {
-      src: "/assets/portrait/Johannes.png",
+      src: "./assets/portrait/Johannes.png",
       caption: "Leg.Radiographer",
       alt: "Radiographer profile picture",
       order: "lg:order-5 order-5",
     },
     {
-      src: "/assets/portrait/SandSurfing.png",
+      src: "./assets/portrait/SandSurfing.png",
       caption: "Desert Adventures",
       alt: "Travel image in the dessert",
       order: "lg:order-6 order-6",
     },
     {
-      src: "/assets/portrait/Linnea.png",
+      src: "./assets/portrait/Linnea.png",
       caption: "The Heart of Our Home",
       alt: "My wife in a natural moment",
       order: "lg:order-7 order-7",
