@@ -7,5 +7,21 @@ export default defineConfig({
   build: {
     outDir: "dist",
     assetsDir: "assets",
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+    sourcemap: true,
+  },
+  resolve: {
+    alias: {
+      "@": "/src",
+    },
+  },
+  server: {
+    port: 3000,
+    open: true,
+    host: true,
   },
 });
