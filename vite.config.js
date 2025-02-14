@@ -8,6 +8,9 @@ export default defineConfig({
     outDir: "dist",
     assetsDir: "assets",
     rollupOptions: {
+      input: {
+        main: "./index.html",
+      },
       output: {
         manualChunks: undefined,
       },
@@ -17,5 +20,11 @@ export default defineConfig({
     alias: {
       "@": "/src",
     },
+    extensions: [".js", ".jsx", ".json"],
+  },
+  esbuild: {
+    loader: "jsx",
+    include: /src\/.*\.jsx?$/,
+    exclude: [],
   },
 });
