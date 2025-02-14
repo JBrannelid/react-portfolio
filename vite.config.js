@@ -1,30 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { resolve } from "path";
 
 export default defineConfig({
   plugins: [react()],
   base: "/react-portfolio/",
-  build: {
-    outDir: "dist",
-    assetsDir: "assets",
-    rollupOptions: {
-      input: {
-        main: "./index.html",
-      },
-      output: {
-        manualChunks: undefined,
-      },
-    },
-  },
   resolve: {
     alias: {
-      "@": "/src",
+      "@": resolve(__dirname, "src"),
     },
-    extensions: [".js", ".jsx", ".json"],
-  },
-  esbuild: {
-    loader: "jsx",
-    include: /src\/.*\.jsx?$/,
-    exclude: [],
   },
 });
