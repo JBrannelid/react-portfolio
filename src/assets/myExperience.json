@@ -1,0 +1,197 @@
+{
+  "resume": {
+    "downloadOptions": {
+      "swedish": {
+        "filename": "CV_Johannes_Brannelid.pdf",
+        "language": "Svenska",
+        "lastUpdated": "2024-01"
+      },
+      "english": {
+        "filename": "Resume_Johannes_Brannelid.pdf",
+        "language": "English",
+        "lastUpdated": "2024-01"
+      }
+    }
+  },
+  "contact": {
+    "phone": "076 777 67 77",
+    "email": "J.Brannelid@icloud.com",
+    "address": "Törnstigen 12, 141 42 Huddinge"
+  },
+  "certifications": [
+    {
+      "type": "Professional",
+      "name": "Leadership Training",
+      "issuer": "Telia Company AB",
+      "year": "2014"
+    },
+    {
+      "type": "License",
+      "name": "Driver's License Type B",
+      "issuer": "Swedish Transport Agency",
+      "status": "Active"
+    }
+  ],
+  "experience": {
+    "currentRole": {
+      "title": "Radiographer",
+      "company": "Karolinska University Hospital",
+      "location": "ME Radiologi Huddinge",
+      "period": "Oct 2024 ->",
+      "details": "Hourly employment",
+      "skills": [
+        "Radiography",
+        "Emergency Care",
+        "Medical Imaging",
+        "Diagnostic Imaging"
+      ]
+    },
+    "previousRole": {
+      "title": "Radiographer",
+      "company": "Danderyds Hospital",
+      "location": "Radiology Department",
+      "period": "2023 - 2024",
+      "details": "Full-time night shift position",
+      "skills": [
+        "Radiography",
+        "Emergency Care",
+        "Medical Imaging",
+        "Diagnostic Imaging"
+      ]
+    },
+    "professionalHistory": [
+      {
+        "title": "First Line Manager",
+        "company": "Karolinska University Hospital",
+        "location": "ME Radiologi Huddinge",
+        "period": "2021 - 2023",
+        "details": "Department Head for conventional radiology, responsible for ~25 employees. Operational manager for conventional radiology unit.",
+        "skills": [
+          "Team Leadership",
+          "Operations Management",
+          "Staff Development",
+          "Healthcare Administration"
+        ]
+      },
+      {
+        "title": "Radiographer",
+        "company": "Karolinska University Hospital",
+        "location": "Huddinge",
+        "period": "2019 - 2021",
+        "details": "Full-time night shift position at emergency radiology department",
+        "skills": [
+          "Radiography",
+          "Emergency Care",
+          "Medical Imaging",
+          "Night Shift Operations"
+        ]
+      },
+      {
+        "title": "Radiographer",
+        "company": "Unilabs",
+        "location": "Täby",
+        "period": "2019",
+        "details": "Involved in launching a new radiological clinic, contributing to equipment setup and implementation of new routines and methods. Primary role was clinical radiographer.",
+        "skills": [
+          "Clinic Setup",
+          "Process Implementation",
+          "Clinical Radiography",
+          "Equipment Management"
+        ]
+      },
+      {
+        "title": "Radiographer",
+        "company": "Karolinska University Hospital",
+        "location": "Huddinge",
+        "period": "2017 - 2019",
+        "details": "Acting unit leader for conventional radiology (Oct 2017-2018). Main supervisor for newly graduated radiographers.",
+        "skills": [
+          "Leadership",
+          "Mentoring",
+          "Clinical Training",
+          "Unit Management"
+        ]
+      },
+      {
+        "title": "Deputy Store Manager",
+        "company": "Telia Company AB",
+        "location": "Sickla",
+        "period": "2012 - 2017",
+        "details": "Promoted to Deputy Store Manager in 2014. Received 'Service Star of the Year' award in 2014.",
+        "skills": [
+          "Retail Management",
+          "Customer Service",
+          "Team Leadership",
+          "Sales"
+        ]
+      },
+      {
+        "title": "Head Waiter",
+        "company": "TGI Friday's",
+        "location": "Kungsträdgården",
+        "period": "2012",
+        "details": "Restaurant service and customer relations",
+        "skills": [
+          "Customer Service",
+          "Restaurant Operations",
+          "Team Coordination"
+        ]
+      },
+      {
+        "title": "Crew Member",
+        "company": "McDonald's",
+        "location": "Söderby",
+        "period": "2012",
+        "details": "Restaurant operations and customer service",
+        "skills": ["Customer Service", "Food Service", "Team Work"]
+      },
+      {
+        "title": "Healthcare Assistant/Nursing Assistant",
+        "company": "Södersjukhuset",
+        "location": "Stockholm",
+        "period": "2008 - 2012",
+        "details": "Patient care and medical assistance",
+        "skills": ["Patient Care", "Healthcare", "Medical Assistance"]
+      }
+    ]
+  },
+  "education": {
+    "university": {
+      "institution": "Uppsala University",
+      "program": "Radiography Program",
+      "period": "2014 - 2017",
+      "credits": "180 HP",
+      "thesis": "Radiographers' ability to detect abuse in children aged 0-3 years"
+    },
+    "secondary": {
+      "institution": "Doctus Gymnasium, Stockholm",
+      "program": "Healthcare and Nursing Program",
+      "period": "2008 - 2011"
+    }
+  },
+  "additionalEducation": [
+    {
+      "institution": "Linköping University",
+      "course": "Technics and Methodology in Medical Image Science",
+      "credits": "7.5",
+      "year": "2018"
+    },
+    {
+      "institution": "Karolinska Institutet",
+      "course": "Teaching for Quality Learning - A Course for Teachers in the Radiography Programme",
+      "credits": "7.5",
+      "year": "2018"
+    },
+    {
+      "institution": "Jönköping University",
+      "course": "Radiography - Primary Image Review and Image Processing at Acute Injuries in the Extremities, I",
+      "credits": "7.5",
+      "year": "2017"
+    },
+    {
+      "institution": "Telia Company AB",
+      "course": "Sales, Inspiration and Leadership Training",
+      "period": "2012 - 2014"
+    }
+  ]
+}

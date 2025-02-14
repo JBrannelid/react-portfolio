@@ -20,9 +20,11 @@
     /* Navbar specifik */
     --nav-bg: #856455;
     --Btn-bg: #6e4b3b;
-    --accent1-orange-color: #ffd621;
 
+    --accent1-orange-color: #ffd621;
     --accent-orange-color: #ec8b2a;
+    --accent-cyan-color: #a2f4fd;
+
     --code-text-color: #e8eef9;
     --input-border-color: #bfbfbf;
     --placeholder-color: #595959;
@@ -49,5 +51,9 @@ body {
 
 /* Typography Styles */
 h1 {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+h2 {
     font-family: 'Josefin Sans', sans-serif;
 }
