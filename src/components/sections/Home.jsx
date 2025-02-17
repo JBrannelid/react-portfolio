@@ -3,10 +3,10 @@ import React from "react";
 const Home = () => {
   return (
     // positioning with fix view-hight för background image absolut position
-    <main className="relative h-[95.8vh] overflow-hidden">
-      <article className="h-full">
-        <div className="flex h-[90vh] items-center justify-between">
-          <div className="relative z-10 w-full max-w-[600px] pl-20">
+    <main className="relative min-h-screen">
+      <article className="h-[90vh]">
+        <div className="flex h-full items-center justify-between flex-wrap">
+          <div className="relative z-10 w-full max-w-[600px] pl-5 sm:pl-10 md:pl-12 lg:pl-16">
             <h2 className="mb-4 text-3xl">Welcome!</h2>
             <h1 className="mb-4 text-4xl text-[var(--accent-orange-color)]">
               I'm Johannes Brannelid
@@ -22,27 +22,17 @@ const Home = () => {
                 you!
               </p>
             </div>
-
-            <section className="mt-8">
-              <h3 className="text-2xl font-semibold">WakaTime Stats</h3>
-              <h5 className="text-sm text-white">
-                (Visual studio & Visual studio code)
-              </h5>
-              <img
-                className="mt-2 w-full sm:w-full lg:max-w-[80%]"
-                src="https://github-readme-stats.vercel.app/api/wakatime?username=JBrannelid&hide=html&hide_title=true&hide_border=true&langs_count=6&text_color=ffffff&theme=transparent&title_color=ec8b2a"
-                alt="Coding Time Stats"
-                aria-live="polite"
-              />
-            </section>
           </div>
           <img
             src="./assets/portrait/profilbild2.png"
             alt="Profile"
-            className="absolute bottom-0 left-1/2 z-0 h-[90vh] max-w-[500px] -translate-x-1/2 hidden sm:block"
+            className="absolute bottom-0 left-1/2 z-0 h-[90vh] max-w-full sm:max-w-[500px] -translate-x-1/2 hidden sm:block"
           />
         </div>
       </article>
+      <div className="absolute bottom-0 left-0 right-0">
+        <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-[var(--accent-orange-color)] to-transparent" />
+      </div>
     </main>
   );
 };

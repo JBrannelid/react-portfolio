@@ -61,7 +61,7 @@ const About = () => {
   };
 
   return (
-    <main className="container mx-auto px-4 py-16 max-w-7xl">
+    <main className="container mx-auto px-4">
       {/* Centered Header Section */}
       <header className="text-center mb-16 max-w-2xl mx-auto">
         <h1 className="text-3xl font-bold mb-4">About Me</h1>

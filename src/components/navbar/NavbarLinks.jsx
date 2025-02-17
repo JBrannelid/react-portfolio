@@ -8,6 +8,7 @@ const NavbarLinks = ({ setMenuOpen }) => {
   const links = [
     { path: "/", name: "Home" },
     { path: "/about", name: "About Me" },
+    { path: "/skills", name: "Skills" },
     { path: "/portfolio", name: "Portfolio" },
     { path: "/experience", name: "Experience" },
     { path: "/contact", name: "Contact" },
@@ -20,19 +21,20 @@ const NavbarLinks = ({ setMenuOpen }) => {
   };
 
   return (
-    <nav className="relative z-50">
+    <nav className="relative z-50 ">
       <ul
         className="flex flex-col sm:flex-row gap-6 text-center 
                      absolute sm:relative 
                      w-[calc(100vw-4rem)] sm:w-auto 
                      left-1/2 sm:left-auto -translate-x-1/2 sm:translate-x-0 
-                     top-8 sm:top-auto
+                     top-15 sm:top-auto
                      bg-[var(--nav-bg)]/80 sm:bg-transparent 
                      backdrop-blur-md sm:backdrop-blur-none 
                      rounded-2xl sm:rounded-none 
                      py-6 sm:py-0 
                      border border-[var(--accent-orange-color)] sm:border-0
-                     shadow-lg sm:shadow-none"
+                     shadow-lg sm:shadow-none
+                     "
       >
         {/* map trough the array of links holding path and name and set styling if true */}
         {links.map(({ path, name }) => (

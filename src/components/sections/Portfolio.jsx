@@ -1,120 +1,165 @@
 import { useState, useEffect } from "react";
-import { ExternalLink, Code2 } from "lucide-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ExternalLink, Github, Loader2 } from "lucide-react";
 
-export default function Projects() {
+const Portfolio = () => {
   const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://api.github.com/users/jbrannelid/repos") // fetch GitHub repo and return a promise
-      .then((response) => response.json()) // return a promise that resolves to JSON data
-      .then((data) => {
-        console.log(data);
-        // Showcast only TWCounters, ChessBoard & SchoolSystem
-        const filteredData = data.filter(
-          (repo) =>
-            repo.name === "TWCounters" ||
-            repo.name === "SchoolSystem" ||
-            repo.name === "ChessBoard"
+    const fetchProjects = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          "https://api.github.com/users/jbrannelid/repos"
         );
-        // sett project med bara filtered data
-        setProjects(filteredData);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error); //handle error message
-      });
+        if (!response.ok) {
+          throw new Error("Failed to fetch projects");
+        }
+        const data = await response.json();
+
+        const filteredData = data.filter((repo) =>
+          ["TWCounters", "SchoolSystem", "ChessBoard"].includes(repo.name)
+        );
+
+        // Add category and color theme for each project
+        const enhancedData = filteredData.map((repo) => ({
+          ...repo,
+          category: getProjectCategory(repo.name),
+          colorTheme: getColorTheme(repo.name),
+        }));
+
+        setProjects(enhancedData);
+      } catch (error) {
+        setError("Failed to load projects. Please try again later.");
+        console.error("Error fetching projects:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProjects();
   }, []);
 
-  return (
-    // Set container of projects section and Tailwind css styling for Title eand sections descriptions
-    <main className="container mx-auto px-4 py-8 sm:py-16">
-      <div className="mb-12 text-center">
-        <h1 className="mb-4 text-4xl font-bold">Featured Projects</h1>
-        <p className="mx-auto max-w-2xl text-lg opacity-90">
-          Here are my featured projects from GitHub. Each one represents a
-          significant milestone in my journey.
-        </p>
+  // Helper function to determine project category
+  const getProjectCategory = (name) => {
+    const categories = {
+      TWCounters: "Web Application",
+      SchoolSystem: "Backend System",
+    };
+    return categories[name] || "Other";
+  };
+
+  // Helper function to assign color theme
+  const getColorTheme = (name) => {
+    const themes = {
+      TWCounters: "from-blue-500/30 to-purple-500/40",
+      SchoolSystem: "from-green-500/30 to-teal-500/40",
+      ChessBoard: "from-orange-500/30 to-red-500/40",
+    };
+    return themes[name] || "from-gray-500/20 to-slate-500/40";
+  };
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader2 className="w-8 h-8 animate-spin text-[var(--accent-orange-color)]" />
       </div>
+    );
+  }
 
-      <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {/* Itterate collected array stored in repo */}
-        {projects.map((repo) => (
-          <article
-            key={repo.id} // Uniq element id
-            className="group relative overflow-hidden rounded-xl bg-[var(--nav-bg)] p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col"
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen gap-4">
+        <div className="text-red-500 text-center max-w-md p-4 bg-red-500/10 rounded-lg">
+          <p>{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 px-4 py-2 bg-[var(--accent-orange-color)] rounded-lg hover:bg-[var(--accent1-orange-color)] transition-colors"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent-orange-color)] to-[var(--accent1-orange-color)] opacity-0 blur-md transition-opacity duration-200 group-hover:opacity-10"></div>
-            {/* Display Name and Description */}
-            <header className="mb-4">
-              <h2 className="text-2xl font-bold text-[var(--accent-orange-color)]">
-                {repo.name}
-              </h2>
-              <p className="mt-2 text-sm opacity-80">
-                {repo.description || "No description available"}
-              </p>
-              <p className="mt-2 text-sm opacity-80">
-                <FontAwesomeIcon
-                  icon={["fa-solid", "plus"]}
-                  className="h-4 w-4 text-[var(--accent1-orange-color)]"
-                />
-                &nbsp;Created at: &nbsp;
-                <span className="font-bold text-cyan-200">
-                  {repo.created_at?.slice(0, 10) || "No date available"}{" "}
-                  {/* Slice to 10 chars */}
-                </span>
-              </p>
-              <p className="mt-2 text-sm opacity-80">
-                <FontAwesomeIcon
-                  icon={["fa-solid", "plus"]}
-                  className="h-4 w-4 text-[var(--accent1-orange-color)]"
-                />
-                &nbsp;Updated at: &nbsp;
-                <span className="font-bold text-cyan-200">
-                  {repo.updated_at?.slice(0, 10) || "No date available"}{" "}
-                  {/* Slice to 10 chars */}
-                </span>
-              </p>
-            </header>
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
 
-            {/* Display repo url and live demo */}
-            <footer className="flex items-center justify-between mt-auto pt-2 relative z-10">
+  return (
+    <main className="container mx-auto px-4">
+      <header className="text-center mb-12">
+        <h1 className="text-4xl font-bold mb-4">Featured Projects</h1>
+        <p className="mx-auto max-w-2xl text-lg opacity-90">
+          Explore my selected projects from GitHub, each representing key
+          milestones in my development journey
+        </p>
+      </header>
+
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map((project) => (
+          <article
+            key={project.id}
+            className={`group relative overflow-hidden rounded-xl bg-gradient-to-r ${project.colorTheme} 
+              p-6 transition-all duration-300 hover:scale-[1.03] flex flex-col
+              border border-white/10 backdrop-blur-sm`}
+          >
+            <div className="mb-4">
+              {/* Project name */}
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm px-3 py-1 rounded-full bg-white/10">
+                  {project.category}
+                </span>
+                <span className="text-sm opacity-60">
+                  {new Date(project.created_at).toLocaleDateString()}
+                </span>
+              </div>
+              {/* Project Title */}
+              <h2 className="text-2xl font-bold mb-2">{project.name}</h2>
+              <p className="text-sm opacity-80 mb-4 line-clamp-3">
+                {/* Fallback if no description is available from GitHub */}
+                {project.description || "No description available"}
+              </p>
+            </div>
+            {/* Most common language in the project */}
+            <div className="mt-auto space-y-4">
+              <div className="flex items-center gap-2">
+                {/* orange dot */}
+                <div className="h-3 w-3 rounded-full bg-[var(--accent-orange-color)]" />
+                <span className="text-sm">{project.language}</span>
+              </div>
+
+              {/* herf link to GitHub*/}
               <div className="flex items-center gap-4">
                 <a
-                  href={repo.html_url}
+                  href={project.html_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative z-20 flex items-center gap-2 rounded-lg px-4 py-2 bg-white/10 hover:bg-white/20 transition-colors duration-300"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 
+                    hover:bg-white/20 transition-colors duration-300"
                 >
-                  <FontAwesomeIcon
-                    icon={["fab", "github"]}
-                    className="h-4 w-4"
-                  />
+                  <Github className="w-4 h-4" />
                   <span>Code</span>
                 </a>
-                {repo.homepage && (
+
+                {/* herf link to Homepage if available */}
+                {project.homepage && (
                   <a
-                    href={repo.homepage}
+                    href={project.homepage}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="relative z-20 flex items-center gap-2 rounded-lg px-4 py-2 bg-white/10 hover:bg-white/20 transition-colors duration-300"
+                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 
+                      hover:bg-white/20 transition-colors duration-300"
                   >
-                    <ExternalLink className="h-4 w-4" />
-                    <span>Live</span>
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Live Demo</span>
                   </a>
                 )}
               </div>
-              {/* Display the projects language*/}
-              <div className="flex items-center gap-2">
-                <FontAwesomeIcon
-                  icon={["fa-solid", "code"]}
-                  className="h-4 w-4 text-[var(--accent1-orange-color)]"
-                />
-                <span className="text-sm">{repo.language}</span>
-              </div>
-            </footer>
+            </div>
           </article>
         ))}
       </div>
     </main>
   );
-}
+};
+
+export default Portfolio;

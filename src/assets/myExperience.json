@@ -77,39 +77,13 @@
         "title": "Radiographer",
         "company": "Karolinska University Hospital",
         "location": "Huddinge",
-        "period": "2019 - 2021",
-        "details": "Full-time night shift position at emergency radiology department",
+        "period": "2017 - 2021",
+        "details": "Acting unit leader for conventional radiology (Oct 2017-2018). Main supervisor for newly graduated radiographers. Full-time night shift 2019 at emergency radiology department",
         "skills": [
           "Radiography",
-          "Emergency Care",
-          "Medical Imaging",
-          "Night Shift Operations"
-        ]
-      },
-      {
-        "title": "Radiographer",
-        "company": "Unilabs",
-        "location": "Täby",
-        "period": "2019",
-        "details": "Involved in launching a new radiological clinic, contributing to equipment setup and implementation of new routines and methods. Primary role was clinical radiographer.",
-        "skills": [
-          "Clinic Setup",
-          "Process Implementation",
-          "Clinical Radiography",
-          "Equipment Management"
-        ]
-      },
-      {
-        "title": "Radiographer",
-        "company": "Karolinska University Hospital",
-        "location": "Huddinge",
-        "period": "2017 - 2019",
-        "details": "Acting unit leader for conventional radiology (Oct 2017-2018). Main supervisor for newly graduated radiographers.",
-        "skills": [
-          "Leadership",
+          "Unit Management",
           "Mentoring",
-          "Clinical Training",
-          "Unit Management"
+          "Night Shift Operations"
         ]
       },
       {
@@ -126,16 +100,12 @@
         ]
       },
       {
-        "title": "Head Waiter",
+        "title": "Waiter",
         "company": "TGI Friday's",
         "location": "Kungsträdgården",
         "period": "2012",
         "details": "Restaurant service and customer relations",
-        "skills": [
-          "Customer Service",
-          "Restaurant Operations",
-          "Team Coordination"
-        ]
+        "skills": ["Customer Service"]
       },
       {
         "title": "Crew Member",
@@ -156,6 +126,13 @@
     ]
   },
   "education": {
+    "Higher-Vocational-Education": {
+      "institution": "Chas Academy | Stockholm",
+      "program": "Fullstack .NET",
+      "period": " 2024/09 ->",
+      "credits": "400 YH ",
+      "description": "Fullstack .NET"
+    },
     "university": {
       "institution": "Uppsala University",
       "program": "Radiography Program",

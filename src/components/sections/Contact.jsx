@@ -57,8 +57,8 @@ export default function Contact() {
 
   return (
     <section className="min-h-screen">
-      <div className="container px-6 mx-auto mt-12">
-        <div className="lg:flex lg:items-center lg:-mx-10">
+      <div className="container px-6 mx-auto">
+        <div className="lg:flex lg:items-center">
           <div className="lg:w-1/2 lg:mx-10">
             <h1 className="text-2xl font-semibold capitalize lg:text-3xl">
               Let's talk
@@ -94,9 +94,9 @@ export default function Contact() {
                     duration-200
                     ease-in-out
                     hover:border-[var(--accent1-orange-color)]
-                    focus:border-[var(--accent-cyan-color)]
+                    focus:border-[var(--accent1-orange-color)]
                     focus:ring-1
-                    focus:ring-[var(--accent-cyan-color)]
+                    focus:ring-[var(--accent1-orange-color)]
                     focus:outline-none
                     focus:shadow-md"
                   />
@@ -124,9 +124,9 @@ export default function Contact() {
                     duration-200
                     ease-in-out
                     hover:border-[var(--accent1-orange-color)]
-                    focus:border-[var(--accent-cyan-color)]
+                    focus:border-[var(--accent1-orange-color)]
                     focus:ring-1
-                    focus:ring-[var(--accent-cyan-color)]
+                    focus:ring-[var(--accent1-orange-color)]
                     focus:outline-none
                     focus:shadow-md"
                   />
@@ -149,9 +149,9 @@ export default function Contact() {
                   duration-200
                   ease-in-out
                   hover:border-[var(--accent1-orange-color)]
-                  focus:border-[var(--accent-cyan-color)]
+                  focus:border-[var(--accent1-orange-color)]
                   focus:ring-1
-                  focus:ring-[var(--accent-cyan-color)]
+                  focus:ring-[var(--accent1-orange-color)]
                   focus:outline-none
                   focus:shadow-md"
                   id="message"
@@ -198,13 +198,6 @@ export default function Contact() {
               src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Contact illustration"
             />
-            <p className="flex items-start mx-2">
-              <FontAwesomeIcon
-                icon={["far", "envelope"]}
-                className="h-4 w-4 text-[var(--accent-orange-color)]"
-              />
-              <span className="mx-2 truncate w-72">Stockholm | Sweden</span>
-            </p>
           </div>
         </div>
       </div>

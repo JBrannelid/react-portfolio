@@ -14,26 +14,39 @@ export const ActiveSectionProvider = ({ children }) => {
     const options = {
       root: null, // Use viewport as root
       rootMargin: "-50% 0px", // Trigger when element is 50% in view
-      threshold: 0,
+      threshold: 0, // Trigger as soon as any part of the element is visible
     };
 
     // Create an Intersection Observer to track which sections are in view
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
+      // Filter for the element that is most visible (largest intersection ratio)
+      const visibleEntry = entries
+        .filter((entry) => entry.isIntersecting)
+        .reduce(
+          (max, current) =>
+            !max || current.intersectionRatio > max.intersectionRatio
+              ? current
+              : max,
+          null
+        );
+
+      if (visibleEntry) {
+        // Update active section only if we have a visible entry
+        setActiveSection(visibleEntry.target.id);
+        console.log("Currently visible section:", visibleEntry.target.id); // Debug line
+      }
     }, options);
 
-    // Select all sections with IDs and observe them
     const sections = document.querySelectorAll("section[id]");
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach((section) => {
+      observer.observe(section);
+      console.log("Observing section:", section.id); // Debug line
+    });
 
     return () => {
       sections.forEach((section) => observer.unobserve(section));
     };
-  }, []);
+  }, []); // only runs once on mount
 
   // Update active section when route changes
   useEffect(() => {
