@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import myExperienceData from "../../assets/myExperience.json";
 
 const Experience = () => {
-  const { experience, education, additionalEducation } = myExperienceData;
+  const { experience, education, additionalEducation, certifications } =
+    myExperienceData;
   const [activeTab, setActiveTab] = useState("experience");
   const [expandedSections, setExpandedSections] = useState({});
 
@@ -23,6 +24,7 @@ const Experience = () => {
     id,
     isExpanded,
     onToggle,
+    alwaysExpanded = false, // Always expand Certification section
   }) => (
     <div className="relative pl-8 pb-8 group">
       {/* Timeline line */}
@@ -40,25 +42,29 @@ const Experience = () => {
               <h3 className="text-xl font-semibold ">{title}</h3>
               <span className="text-sm opacity-80">{period}</span>
             </div>
-            <button
-              className="p-1 hover:bg-white/10 rounded-full transition-colors"
-              onClick={() => onToggle(id)}
-            >
-              <FontAwesomeIcon
-                icon={
-                  isExpanded
-                    ? ["fas", "chevron-down"]
-                    : ["fas", "chevron-right"]
-                }
-                className="w-4 h-4"
-              />
-            </button>
+            {!alwaysExpanded && (
+              <button
+                className="p-1 hover:bg-white/10 rounded-full transition-colors"
+                onClick={() => onToggle(id)}
+              >
+                <FontAwesomeIcon
+                  icon={
+                    isExpanded
+                      ? ["fas", "chevron-down"]
+                      : ["fas", "chevron-right"]
+                  }
+                  className="w-4 h-4"
+                />
+              </button>
+            )}
           </div>
         </div>
 
         <div
           className={`transition-all duration-300 overflow-hidden ${
-            isExpanded ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+            alwaysExpanded || isExpanded
+              ? "max-h-[500px] opacity-100"
+              : "max-h-0 opacity-0"
           }`}
         >
           {children}
@@ -119,6 +125,12 @@ const Experience = () => {
           label="Additional Training"
           onClick={() => setActiveTab("additional")}
         />
+        <TabButton
+          active={activeTab === "certifications"}
+          iconName="certificate"
+          label="Certifications"
+          onClick={() => setActiveTab("certifications")}
+        />
       </div>
 
       {/* Content Sections */}
@@ -126,6 +138,7 @@ const Experience = () => {
         {/* Work Experience Section */}
         {activeTab === "experience" && (
           <div className="space-y-4">
+            {/* Current work */}
             <TimelineEntry
               title={experience.currentRole.title}
               period={experience.currentRole.period}
@@ -149,6 +162,7 @@ const Experience = () => {
               </div>
             </TimelineEntry>
 
+            {/* previousRole */}
             <TimelineEntry
               title={experience.previousRole.title}
               period={experience.previousRole.period}
@@ -172,6 +186,7 @@ const Experience = () => {
               </div>
             </TimelineEntry>
 
+            {/* professionalHistory */}
             {experience.professionalHistory.map((role, index) => (
               <TimelineEntry
                 key={index}
@@ -200,6 +215,7 @@ const Experience = () => {
         {/* Education Section */}
         {activeTab === "education" && (
           <div className="space-y-4">
+            {/* Higher-Vocational-Education */}
             <TimelineEntry
               title={education["Higher-Vocational-Education"].program}
               period={education["Higher-Vocational-Education"].period}
@@ -222,6 +238,7 @@ const Experience = () => {
               </div>
             </TimelineEntry>
 
+            {/* University */}
             <TimelineEntry
               title={education.university.program}
               period={education.university.period}
@@ -242,7 +259,7 @@ const Experience = () => {
                       rel="noopener noreferrer"
                       className="text-sm text-[var(--accent1-orange-color)] hover:underline"
                     >
-                      {education.university.thesis}
+                      ➡️ {education.university.thesis}
                     </a>
                   </div>
                 )}
@@ -272,6 +289,32 @@ const Experience = () => {
                   </p>
                   {course.credits && (
                     <SkillTag skill={`${course.credits} credits`} />
+                  )}
+                </div>
+              </TimelineEntry>
+            ))}
+          </div>
+        )}
+
+        {/* Certifications - Always expanded */}
+        {activeTab === "certifications" && (
+          <div className="space-y-4">
+            {certifications.map((certificate, index) => (
+              <TimelineEntry
+                key={index}
+                title={certificate.name}
+                period={certificate.year}
+                id={`certification-${index}`}
+                isExpanded={true}
+                onToggle={() => {}}
+                alwaysExpanded={true} // Always be expanded = true
+              >
+                <div className="pt-4">
+                  <p className="text-sm text-[var(--accent1-orange-color)] mb-2">
+                    {certificate.issuer}
+                  </p>
+                  {certificate.status && (
+                    <SkillTag skill={`Status: ${certificate.status}`} />
                   )}
                 </div>
               </TimelineEntry>

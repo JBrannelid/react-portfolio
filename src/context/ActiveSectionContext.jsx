@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-// Create a context for tracking the active section. Will highligt active section on SPA-application base on viewport section
+// Create a context for tracking the active section
 const ActiveSectionContext = createContext();
 
 export const ActiveSectionProvider = ({ children }) => {
@@ -9,12 +9,12 @@ export const ActiveSectionProvider = ({ children }) => {
   const [activeSection, setActiveSection] = useState("home");
   const location = useLocation();
 
-  // rootMargin of -50% means element must be at least halfway in view
+  // Setup intersection observer to track visible sections
   useEffect(() => {
     const options = {
       root: null, // Use viewport as root
       rootMargin: "-50% 0px", // Trigger when element is 50% in view
-      threshold: 0, // Trigger as soon as any part of the element is visible
+      threshold: 0, // Trigger as soon as any part of element is visible
     };
 
     // Create an Intersection Observer to track which sections are in view
@@ -33,20 +33,56 @@ export const ActiveSectionProvider = ({ children }) => {
       if (visibleEntry) {
         // Update active section only if we have a visible entry
         setActiveSection(visibleEntry.target.id);
-        console.log("Currently visible section:", visibleEntry.target.id); // Debug line
       }
     }, options);
 
-    const sections = document.querySelectorAll("section[id]");
-    sections.forEach((section) => {
-      observer.observe(section);
-      console.log("Observing section:", section.id); // Debug line
+    // Function to observe all sections
+    const observeSections = () => {
+      const sections = document.querySelectorAll("section[id]");
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+    };
+
+    // Initial observation
+    observeSections();
+
+    // Set up a MutationObserver to detect when new sections are added (for lazy loading)
+    const mutationObserver = new MutationObserver((mutations) => {
+      let shouldReobserve = false;
+
+      mutations.forEach((mutation) => {
+        if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+          // Check if any of the added nodes are sections or contain sections
+          mutation.addedNodes.forEach((node) => {
+            if (node.nodeType === 1) {
+              // Element node
+              if (node.tagName === "SECTION" || node.querySelector("section")) {
+                shouldReobserve = true;
+              }
+            }
+          });
+        }
+      });
+
+      if (shouldReobserve) {
+        // Re-observe all sections after DOM changes
+        observeSections();
+      }
     });
 
+    // Start observing the document body for DOM changes
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    // Cleanup function
     return () => {
-      sections.forEach((section) => observer.unobserve(section));
+      observer.disconnect();
+      mutationObserver.disconnect();
     };
-  }, []); // only runs once on mount
+  }, []); // Only runs once on mount
 
   // Update active section when route changes
   useEffect(() => {

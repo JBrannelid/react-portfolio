@@ -2,14 +2,54 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
-// Import both library and dom from fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { fas } from "@fortawesome/free-solid-svg-icons";
 
-// Add fontawsome icons to the library
-library.add(fab, fas, far);
+// Brands icons
+import {
+  faGithub,
+  faLinkedin,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
+
+// Solid icons
+import {
+  faDesktop,
+  faServer,
+  faCodeBranch,
+  faBriefcase,
+  faGraduationCap,
+  faAward,
+  faCertificate,
+  faChevronDown,
+  faChevronRight,
+  faCircle,
+  faFilePdf,
+  faSun,
+  faMoon,
+} from "@fortawesome/free-solid-svg-icons";
+
+// Add favicon to the library
+library.add(
+  // Brands
+  faGithub,
+  faLinkedin,
+  faInstagram,
+
+  // Solid
+  faDesktop,
+  faServer,
+  faCodeBranch,
+  faBriefcase,
+  faGraduationCap,
+  faAward,
+  faCertificate,
+  faChevronDown,
+  faChevronRight,
+  faCircle,
+  faFilePdf,
+  faSun,
+  faMoon
+);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

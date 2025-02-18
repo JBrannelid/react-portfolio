@@ -167,7 +167,7 @@ export default function Contact() {
                 className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] w-full mt-4 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
               >
                 <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ec8b2a_0%,#ffd621_50%,#ec8b2a_100%)]" />
-                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[var(--Btn-bg)] text-sm font-medium text-gray-50 backdrop-blur-3xl transition-all duration-300 hover:bg-[var(--nav-bg)]">
+                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-red-400/60 to-amber-600/60 text-sm backdrop-blur-3xl transition-all duration-300 hover:bg-amber-600">
                   Get in touch
                 </span>
               </button>
@@ -194,8 +194,7 @@ export default function Contact() {
           <div className="lg:flex lg:mt-0 lg:flex-col lg:items-center lg:w-1/2 lg:mx-10">
             <img
               className="mt-20 hidden object-cover mx-auto rounded-full lg:block shrink-0 w-80 h-80"
-              // placeholder image
-              src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="./assets/portrait/IMG_2402.JPG"
               alt="Contact illustration"
             />
           </div>

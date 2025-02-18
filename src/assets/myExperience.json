@@ -4,32 +4,30 @@
       "swedish": {
         "filename": "CV_Johannes_Brannelid.pdf",
         "language": "Svenska",
-        "lastUpdated": "2024-01"
+        "lastUpdated": "2024-02"
       },
       "english": {
         "filename": "Resume_Johannes_Brannelid.pdf",
         "language": "English",
-        "lastUpdated": "2024-01"
+        "lastUpdated": "2024-02"
       }
     }
   },
   "contact": {
     "phone": "076 777 67 77",
     "email": "J.Brannelid@icloud.com",
-    "address": "Törnstigen 12, 141 42 Huddinge"
+    "address": "St: Göransgatan 158, 112 17, Stockholm"
   },
   "certifications": [
     {
-      "type": "Professional",
       "name": "Leadership Training",
       "issuer": "Telia Company AB",
       "year": "2014"
     },
     {
-      "type": "License",
       "name": "Driver's License Type B",
       "issuer": "Swedish Transport Agency",
-      "status": "Active"
+      "year": ""
     }
   ],
   "experience": {
@@ -37,7 +35,7 @@
       "title": "Radiographer",
       "company": "Karolinska University Hospital",
       "location": "ME Radiologi Huddinge",
-      "period": "Oct 2024 ->",
+      "period": "Ongoing",
       "details": "Hourly employment",
       "skills": [
         "Radiography",
@@ -105,14 +103,14 @@
         "location": "Kungsträdgården",
         "period": "2012",
         "details": "Restaurant service and customer relations",
-        "skills": ["Customer Service"]
+        "skills": ["Customer Service", "Food Service", "Team Work"]
       },
       {
-        "title": "Crew Member",
+        "title": "Staff Employee",
         "company": "McDonald's",
         "location": "Söderby",
         "period": "2012",
-        "details": "Restaurant operations and customer service",
+        "details": "Restaurant service and customer relations",
         "skills": ["Customer Service", "Food Service", "Team Work"]
       },
       {
@@ -120,8 +118,8 @@
         "company": "Södersjukhuset",
         "location": "Stockholm",
         "period": "2008 - 2012",
-        "details": "Patient care and medical assistance",
-        "skills": ["Patient Care", "Healthcare", "Medical Assistance"]
+        "details": "",
+        "skills": [""]
       }
     ]
   },
@@ -129,20 +127,20 @@
     "Higher-Vocational-Education": {
       "institution": "Chas Academy | Stockholm",
       "program": "Fullstack .NET",
-      "period": " 2024/09 ->",
+      "period": "Ongoing",
       "credits": "400 YH ",
       "description": "Fullstack .NET"
     },
     "university": {
       "institution": "Uppsala University",
-      "program": "Radiography Program",
+      "program": "Radiography programme",
       "period": "2014 - 2017",
       "credits": "180 HP",
       "thesis": "Radiographers' ability to detect abuse in children aged 0-3 years"
     },
     "secondary": {
       "institution": "Doctus Gymnasium, Stockholm",
-      "program": "Healthcare and Nursing Program",
+      "program": "Healthcare and Nursing programme",
       "period": "2008 - 2011"
     }
   },
@@ -161,7 +159,7 @@
     },
     {
       "institution": "Jönköping University",
-      "course": "Radiography - Primary Image Review and Image Processing at Acute Injuries in the Extremities, I",
+      "course": "Radiography - Primary image review and image processing at acute injuries in the extremities, I",
       "credits": "7.5",
       "year": "2017"
     },
