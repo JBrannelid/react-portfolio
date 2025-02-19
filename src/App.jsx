@@ -18,17 +18,18 @@ const LoadingSpinner = () => (
 
 // Determine the basename based on environment
 const getBasename = () => {
-  // Check if we're running in production (GitHub Pages)
-  const isProduction =
-    window.location.hostname !== "localhost" &&
-    window.location.hostname !== "127.0.0.1";
-  return isProduction ? "/react-portfolio" : "";
+  // In development, use empty string; in production use /react-portfolio
+  if (import.meta.env.DEV) {
+    return "";
+  }
+  return "/react-portfolio";
 };
 
 function App() {
   return (
     <ThemeProvider>
       <div className="app-root min-h-screen bg-[var(--primary-bg)] transition-colors duration-300">
+        {/* Ensure we pass correct basename */}
         <BrowserRouter basename={getBasename()}>
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>

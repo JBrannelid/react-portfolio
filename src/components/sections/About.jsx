@@ -1,10 +1,11 @@
 import React from "react";
+import { getAssetPath } from "../../utils/assetUtils";
 
 const About = () => {
   // Array of static image with belongings description. Display-order for media screen
   const polaroidImages = [
     {
-      src: "./assets/portrait/Elina.webp",
+      src: getAssetPath("assets/portrait/Elina.webp"),
       sizes: "(max-width: 768px) 100vw, 400px",
       caption: "Grace in Motion",
       alt: "My daughter before balett traningsession",
@@ -18,7 +19,7 @@ const About = () => {
       order: "lg:order-2 order-1",
     },
     {
-      src: "./assets/portrait/maxi_remove_bg.webp",
+      src: getAssetPath("assets/portrait/maxi_remove_bg.webp"),
       sizes: "(max-width: 768px) 100vw, 400px",
       caption: "Match Day Energy",
       alt: "My son before a football game",
@@ -27,7 +28,7 @@ const About = () => {
       height: 400,
     },
     {
-      src: "./assets/portrait/elina_linnea_remove_bg.webp",
+      src: getAssetPath("assets/portrait/elina_linnea_remove_bg.webp"),
       sizes: "(max-width: 768px) 100vw, 400px",
       caption: "Autumn Harvest",
       alt: "Autumn Harvest with my daughter and wife",
@@ -36,7 +37,7 @@ const About = () => {
       height: 400,
     },
     {
-      src: "./assets/portrait/Johannes.webp",
+      src: getAssetPath("assets/portrait/Johannes.webp"),
       sizes: "(max-width: 768px) 100vw, 400px",
       caption: "Leg.Radiographer",
       alt: "Radiographer profile picture",
@@ -45,7 +46,7 @@ const About = () => {
       height: 400,
     },
     {
-      src: "./assets/portrait/SandSurfing.webp",
+      src: getAssetPath("assets/portrait/SandSurfing.webp"),
       sizes: "(max-width: 768px) 100vw, 400px",
       caption: "Desert Adventures",
       alt: "Travel image in the dessert",
@@ -54,7 +55,7 @@ const About = () => {
       height: 400,
     },
     {
-      src: "./assets/portrait/Linnea.webp",
+      src: getAssetPath("assets/portrait/Linnea.webp"),
       sizes: "(max-width: 768px) 100vw, 400px",
       caption: "The Heart of Our Home",
       alt: "My wife in a natural moment",

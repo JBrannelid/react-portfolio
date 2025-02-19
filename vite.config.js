@@ -4,6 +4,8 @@ import compression from "vite-plugin-compression";
 
 // Build project by code-split the application
 export default defineConfig({
+  // Add base path for GitHub Pages
+  base: process.env.NODE_ENV === "production" ? "/react-portfolio/" : "/",
   plugins: [
     react(),
     compression({
@@ -24,7 +26,6 @@ export default defineConfig({
   server: {
     open: true,
     port: 3000,
-    // Remove the middleware that attempts to set Content-Encoding manually
   },
   build: {
     rollupOptions: {

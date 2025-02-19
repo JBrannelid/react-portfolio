@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import resumeData from "../../assets/myExperience.json";
+import { getAssetPath } from "../../utils/assetUtils";
 
 const Home = () => {
   const { downloadOptions } = resumeData.resume;
@@ -34,7 +35,9 @@ const Home = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   {/* Swedish CV Button */}
                   <a
-                    href={`/react-portfolio/assets/cv/${downloadOptions.swedish.filename}`}
+                    href={getAssetPath(
+                      `assets/cv/${downloadOptions.swedish.filename}`
+                    )}
                     download
                     className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 group"
                   >
@@ -47,7 +50,9 @@ const Home = () => {
 
                   {/* English CV Button */}
                   <a
-                    href={`/react-portfolio/assets/cv/${downloadOptions.english.filename}`}
+                    href={getAssetPath(
+                      `assets/cv/${downloadOptions.english.filename}`
+                    )}
                     download
                     className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 group"
                   >
@@ -65,7 +70,7 @@ const Home = () => {
             </div>
           </div>
           <img
-            src="./assets/portrait/profilbild2.webp"
+            src={getAssetPath("assets/portrait/profilbild2.webp")}
             sizes="(max-width: 640px) 0px, (max-width: 1024px) 500px, 800px"
             alt="Profile"
             className="absolute bottom-0 left-1/2 z-0 h-[90vh] max-w-full sm:max-w-[500px] -translate-x-1/2 hidden sm:block"
@@ -74,7 +79,7 @@ const Home = () => {
           />
         </div>
       </article>
-      {/* Section divider with absolute position. Other section divider is places in Layput components*/}
+      {/* Section divider with absolute position. Other section divider is places in Layout components*/}
       <div className="absolute bottom-0 left-0 right-0">
         <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-[var(--accent-orange-color)] to-transparent" />
       </div>
