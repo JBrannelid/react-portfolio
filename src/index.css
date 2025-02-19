@@ -3,8 +3,9 @@
     all config customizations is directly done in CSS file 
 */
 
-@import "./fonts.css";
+/* Import tailwond css first then fonts after initial tailwind render */
 @import "tailwindcss";
+@import "./fonts.css" print;
 
 /* Root variables */
 :root {

@@ -5,6 +5,7 @@ const About = () => {
   const polaroidImages = [
     {
       src: "./assets/portrait/Elina.webp",
+      sizes: "(max-width: 768px) 100vw, 400px",
       caption: "Grace in Motion",
       alt: "My daughter before balett traningsession",
       order: "lg:order-1 order-2",
@@ -18,6 +19,7 @@ const About = () => {
     },
     {
       src: "./assets/portrait/maxi_remove_bg.webp",
+      sizes: "(max-width: 768px) 100vw, 400px",
       caption: "Match Day Energy",
       alt: "My son before a football game",
       order: "lg:order-3 order-3",
@@ -26,6 +28,7 @@ const About = () => {
     },
     {
       src: "./assets/portrait/elina_linnea_remove_bg.webp",
+      sizes: "(max-width: 768px) 100vw, 400px",
       caption: "Autumn Harvest",
       alt: "Autumn Harvest with my daughter and wife",
       order: "lg:order-4 order-4",
@@ -34,6 +37,7 @@ const About = () => {
     },
     {
       src: "./assets/portrait/Johannes.webp",
+      sizes: "(max-width: 768px) 100vw, 400px",
       caption: "Leg.Radiographer",
       alt: "Radiographer profile picture",
       order: "lg:order-5 order-5",
@@ -42,6 +46,7 @@ const About = () => {
     },
     {
       src: "./assets/portrait/SandSurfing.webp",
+      sizes: "(max-width: 768px) 100vw, 400px",
       caption: "Desert Adventures",
       alt: "Travel image in the dessert",
       order: "lg:order-6 order-6",
@@ -50,6 +55,7 @@ const About = () => {
     },
     {
       src: "./assets/portrait/Linnea.webp",
+      sizes: "(max-width: 768px) 100vw, 400px",
       caption: "The Heart of Our Home",
       alt: "My wife in a natural moment",
       order: "lg:order-7 order-7",
@@ -161,6 +167,7 @@ const About = () => {
                   <div className="aspect-square rounded-lg bg-[var(--input-border-color)] overflow-hidden max-w-[15rem]">
                     <img
                       src={image.src}
+                      sizes={image.sizes}
                       alt={image.alt}
                       className="w-full h-full object-cover"
                       width={image.width || 240}

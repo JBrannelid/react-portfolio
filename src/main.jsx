@@ -4,15 +4,42 @@ import "./index.css";
 import App from "./App.jsx";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
-// Brands icons
+// Import all required icons synchronously to avoid loading issues
+import {
+  faBars,
+  faTimes,
+  faChevronDown,
+  faChevronRight,
+  faCircle,
+  faDesktop,
+  faServer,
+  faCodeBranch,
+  faBriefcase,
+  faGraduationCap,
+  faAward,
+  faCertificate,
+  faFilePdf,
+  faSun,
+  faMoon,
+  faLink,
+  faSpinner,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
+
 import {
   faGithub,
   faLinkedin,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 
-// Solid icons
-import {
+// Add all icons immediately
+library.add(
+  // Solid icons
+  faBars,
+  faTimes,
+  faChevronDown,
+  faChevronRight,
+  faCircle,
   faDesktop,
   faServer,
   faCodeBranch,
@@ -20,37 +47,20 @@ import {
   faGraduationCap,
   faAward,
   faCertificate,
-  faChevronDown,
-  faChevronRight,
-  faCircle,
   faFilePdf,
   faSun,
   faMoon,
-} from "@fortawesome/free-solid-svg-icons";
+  faLink,
+  faSpinner,
+  faEnvelope,
 
-// Add favicon to the library
-library.add(
-  // Brands
+  // Brand icons
   faGithub,
   faLinkedin,
-  faInstagram,
-
-  // Solid
-  faDesktop,
-  faServer,
-  faCodeBranch,
-  faBriefcase,
-  faGraduationCap,
-  faAward,
-  faCertificate,
-  faChevronDown,
-  faChevronRight,
-  faCircle,
-  faFilePdf,
-  faSun,
-  faMoon
+  faInstagram
 );
 
+// Render the app with all icons loaded
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <App />

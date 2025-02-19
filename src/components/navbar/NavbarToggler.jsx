@@ -7,7 +7,7 @@ const NavbarToggler = ({ toggleMenu }) => {
       className="text-2xl p-3 border-[var(--accent-orange-color)] rounded-full"
       onClick={toggleMenu}
     >
-      <FontAwesomeIcon icon={faBars} />
+      <FontAwesomeIcon icon={["fas", "bars"]} />
     </button>
   );
 };

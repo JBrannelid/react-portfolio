@@ -46,8 +46,8 @@ const Footer = () => {
         </section>
 
         {/* Middle Section */}
-        <section className="md:border-r border-white/60 flex flex-col justify-end items-center py-4">
-          <p className="pb-5">
+        <section className="md:border-r border-white/60 flex flex-col items-center py-4">
+          <p className="pb-5 mt-2">
             <span className="mx-2 truncate w-72">Stockholm | Sweden</span>
           </p>
           <p className="text-sm opacity-90">

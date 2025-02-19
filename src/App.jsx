@@ -1,10 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, memo } from "react";
 import Layout from "./components/Layout";
 import { ThemeProvider } from "./context/ThemeContext";
 
 // Lazy load 404 page
 const NotFound = lazy(() => import("./components/NotFound"));
+
+// Memoize the Layout component
+const MemoizedLayout = memo(Layout);
 
 // Loading spinner component for lazy-loaded routes
 const LoadingSpinner = () => (
@@ -13,14 +16,23 @@ const LoadingSpinner = () => (
   </div>
 );
 
+// Determine the basename based on environment
+const getBasename = () => {
+  // Check if we're running in production (GitHub Pages)
+  const isProduction =
+    window.location.hostname !== "localhost" &&
+    window.location.hostname !== "127.0.0.1";
+  return isProduction ? "/react-portfolio" : "";
+};
+
 function App() {
   return (
     <ThemeProvider>
       <div className="app-root min-h-screen bg-[var(--primary-bg)] transition-colors duration-300">
-        <BrowserRouter basename="/react-portfolio">
+        <BrowserRouter basename={getBasename()}>
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
-              <Route path="/*" element={<Layout />} />
+              <Route path="/*" element={<MemoizedLayout />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

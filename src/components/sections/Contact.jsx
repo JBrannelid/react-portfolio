@@ -68,6 +68,7 @@ export default function Contact() {
               I'd be happy to hear from you! Feel free to reach out via email,
               contact form or provided social media links below
             </p>
+
             <div className="mt-6 space-y-8 md:mt-8"></div>
 
             <form className="mt-12" onSubmit={onSubmit}>
@@ -200,6 +201,21 @@ export default function Contact() {
               height="320"
               loading="lazy" // Lazy loading for better performance as Contact is the last section
             />
+          </div>
+        </div>
+        {/* Contact Email with href link */}
+        <div className="flex justify-end items-center mt-12 mb-6">
+          <div className="flex items-center gap-3 bg-white/10 px-6 py-3 rounded-full">
+            <FontAwesomeIcon
+              icon={["fas", "envelope"]}
+              className="text-[var(--accent-orange-color)]"
+            />
+            <a
+              href="mailto:J.Brannelid@icloud.com"
+              className="text-[var(--text-color)] hover:text-[var(--accent1-orange-color)] transition-colors duration-300"
+            >
+              J.Brannelid@icloud.com
+            </a>
           </div>
         </div>
       </div>

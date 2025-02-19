@@ -1,41 +1,69 @@
 import { useState, useEffect } from "react";
-import { ExternalLink, Github, Loader2 } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Portfolio = () => {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  //  fetch data from Github public API with cache and rate limits
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         setIsLoading(true);
+
+        const cachedData = localStorage.getItem("githubProjects");
+        const cacheTime = localStorage.getItem("githubProjectsTime");
+        const oneHourInMs = 60 * 60 * 1000; // 1 hour
+        const now = Date.now();
+
+        // Use cache if available and less than 1 hour old
+        if (cachedData && cacheTime && now - Number(cacheTime) < oneHourInMs) {
+          console.log("Using cached GitHub data");
+          const parsedData = JSON.parse(cachedData);
+          prepareProjectsForDisplay(parsedData);
+          return;
+        }
+
+        // Fetch fresh data if cache is missing or expired
         const response = await fetch(
           "https://api.github.com/users/jbrannelid/repos"
         );
+
         if (!response.ok) {
-          throw new Error("Failed to fetch projects");
+          throw new Error("Could not fetch projects from GitHub");
         }
+
         const data = await response.json();
 
-        const filteredData = data.filter((repo) =>
-          ["TWCounters", "SchoolSystem", "ChessBoard"].includes(repo.name)
-        );
+        // Save to cache with timestamp
+        localStorage.setItem("githubProjects", JSON.stringify(data));
+        localStorage.setItem("githubProjectsTime", String(now));
 
-        // Add category and color theme for each project
-        const enhancedData = filteredData.map((repo) => ({
-          ...repo,
-          category: getProjectCategory(repo.name),
-          colorTheme: getColorTheme(repo.name),
-        }));
-
-        setProjects(enhancedData);
+        prepareProjectsForDisplay(data);
       } catch (error) {
         setError("Failed to load projects. Please try again later.");
-        console.error("Error fetching projects:", error);
+        console.error("Error loading projects:", error);
       } finally {
         setIsLoading(false);
       }
+    };
+
+    // Helper function to prepare projects data
+    const prepareProjectsForDisplay = (data) => {
+      // Filter to only show specific projects
+      const filteredProjects = data.filter((repo) =>
+        ["TWCounters", "SchoolSystem", "ChessBoard"].includes(repo.name)
+      );
+
+      // Add additional information to each project
+      const projectsWithDetails = filteredProjects.map((repo) => ({
+        ...repo,
+        category: getProjectCategory(repo.name),
+        colorTheme: getColorTheme(repo.name),
+      }));
+
+      setProjects(projectsWithDetails);
     };
 
     fetchProjects();
@@ -63,7 +91,10 @@ const Portfolio = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="w-8 h-8 animate-spin text-[var(--accent-orange-color)]" />
+        <FontAwesomeIcon
+          icon={["fas", "spinner"]}
+          className="w-8 h-8 animate-spin text-[var(--accent-orange-color)]"
+        />
       </div>
     );
   }
@@ -136,7 +167,7 @@ const Portfolio = () => {
                   className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 
                     hover:bg-white/20 transition-colors duration-300"
                 >
-                  <Github className="w-4 h-4" />
+                  <FontAwesomeIcon icon={["fab", "github"]} />
                   <span>Code</span>
                 </a>
 
@@ -149,7 +180,7 @@ const Portfolio = () => {
                     className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 
                       hover:bg-white/20 transition-colors duration-300"
                   >
-                    <ExternalLink className="w-4 h-4" />
+                    <FontAwesomeIcon icon={["fas", "link"]} />
                     <span>Live Demo</span>
                   </a>
                 )}

@@ -66,6 +66,7 @@ const Home = () => {
           </div>
           <img
             src="./assets/portrait/profilbild2.webp"
+            sizes="(max-width: 640px) 0px, (max-width: 1024px) 500px, 800px"
             alt="Profile"
             className="absolute bottom-0 left-1/2 z-0 h-[90vh] max-w-full sm:max-w-[500px] -translate-x-1/2 hidden sm:block"
             width="500"
