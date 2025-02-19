@@ -97,6 +97,17 @@ h2 {
     font-family: 'Josefin Sans', sans-serif;
 }
 
+/* Apply fix background to handle small screen background such as iPhone Dynamic Island */
+.app-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--primary-bg);
+    z-index: -1;
+}
+
 /* Custom Scrollbar Styling */
 /*  Firefox */
 * {
