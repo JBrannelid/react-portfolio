@@ -88,6 +88,10 @@ body {
     overflow-x: hidden;
 }
 
+body {
+    background-color: transparent;
+}
+
 /* Typography Styles */
 h1 {
     font-family: 'Josefin Sans', sans-serif;
@@ -144,4 +148,22 @@ h2 {
 
 .dark-mode *::-webkit-scrollbar-thumb {
     border-color: var(--secondary-bg);
+}
+
+@media (max-width: 768px) {
+    html::after {
+        content: '';
+        position: fixed;
+        top: -50vh;
+        left: -50vw;
+        right: -50vw;
+        bottom: -50vh;
+        background-color: var(--primary-bg);
+        z-index: -999;
+        pointer-events: none;
+    }
+
+    .dark-mode html::after {
+        background-color: var(--primary-dark-bg);
+    }
 }

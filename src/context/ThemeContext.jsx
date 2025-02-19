@@ -17,9 +17,13 @@ export const ThemeProvider = ({ children }) => {
     if (theme === "dark") {
       root.classList.add("dark-mode");
       localStorage.setItem("theme", "dark");
+      document.querySelector("html").style.backgroundColor =
+        "var(--primary-dark-bg)";
     } else {
       root.classList.remove("dark-mode");
       localStorage.setItem("theme", "light");
+      document.querySelector("html").style.backgroundColor =
+        "var(--primary-bg)";
     }
   }, [theme]);
 
