@@ -1,4 +1,4 @@
-import{c as o,j as e}from"./index-C2Oqrt-c.js";import{a}from"./routing-vCLUgvyj.js";import"./react-core-DbHEDQBy.js";import"./fontawesome-react-DZpL5_7X.js";import"./fontawesome-core-CvPWi8JN.js";import"./fontawesome-brands-BOo1eGpv.js";import"./fontawesome-solid-BVvy6kF4.js";/**
+import{c as o,j as e}from"./index-CqUxuoBb.js";import{a}from"./routing-vCLUgvyj.js";import"./react-core-DbHEDQBy.js";import"./fontawesome-react-DZpL5_7X.js";import"./fontawesome-core-CvPWi8JN.js";import"./fontawesome-brands-BOo1eGpv.js";import"./fontawesome-solid-BVvy6kF4.js";/**
  * @license lucide-react v0.475.0 - ISC
  *
  * This source code is licensed under the ISC license.
