@@ -16,14 +16,16 @@ const LoadingSpinner = () => (
 function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter basename="/react-portfolio">
-        <Suspense fallback={<LoadingSpinner />}>
-          <Routes>
-            <Route path="/*" element={<Layout />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
+      <div className="app-root min-h-screen bg-[var(--primary-bg)] transition-colors duration-300">
+        <BrowserRouter basename="/react-portfolio">
+          <Suspense fallback={<LoadingSpinner />}>
+            <Routes>
+              <Route path="/*" element={<Layout />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </div>
     </ThemeProvider>
   );
 }

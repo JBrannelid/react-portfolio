@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NotFound = () => {
   return (
-    <main className="min-h-screen flex items-center justify-center p-5">
+    <main className="min-h-screen flex items-center justify-center p-5 bg-[var(--primary-bg)]">
       <div className="text-center max-w-lg">
         <div className="mb-8">
           <div className="text-[8rem] font-bold bg-gradient-to-r from-[var(--accent-orange-color)] to-[var(--accent1-orange-color)] bg-clip-text text-transparent">

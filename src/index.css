@@ -101,22 +101,10 @@ h2 {
     font-family: 'Josefin Sans', sans-serif;
 }
 
-/* Apply fix background to handle small screen background such as iPhone Dynamic Island */
-.app-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--primary-bg);
-    z-index: -1;
-}
-
 /* Custom Scrollbar Styling */
 /*  Firefox */
 * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent-orange-color) var(--secondary-bg);
+    scrollbar-color: var(--nav-bg) var(--primary-bg);
 }
 
 /* Chrome, Edge, and Safari */
@@ -125,20 +113,19 @@ h2 {
 }
 
 *::-webkit-scrollbar-track {
-    background: var(--secondary-bg);
+    background: var(--primary-bg);
     border-radius: 10px;
 }
 
 *::-webkit-scrollbar-thumb {
-    background: var(--accent-orange-color);
-    background: linear-gradient(180deg, var(--accent-orange-color) 0%, var(--accent1-orange-color) 100%);
+    background: var(--nav-bg);
     border-radius: 10px;
-    border: 3px solid var(--secondary-bg);
+    border: 3px solid var(--primary-bg);
     transition: all 0.3s ease;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background: var(--accent1-orange-color);
+    background: var(--primary-bg);
 }
 
 /* For dark mode adaptation */
@@ -148,22 +135,4 @@ h2 {
 
 .dark-mode *::-webkit-scrollbar-thumb {
     border-color: var(--secondary-bg);
-}
-
-@media (max-width: 768px) {
-    html::after {
-        content: '';
-        position: fixed;
-        top: -50vh;
-        left: -50vw;
-        right: -50vw;
-        bottom: -50vh;
-        background-color: var(--primary-bg);
-        z-index: -999;
-        pointer-events: none;
-    }
-
-    .dark-mode html::after {
-        background-color: var(--primary-dark-bg);
-    }
 }
