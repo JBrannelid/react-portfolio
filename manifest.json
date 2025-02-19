@@ -1,0 +1,22 @@
+{
+  "name": "Johannes Brannelid Portfolio",
+  "short_name": "JB Portfolio",
+  "icons": [
+    {
+      "src": "./assets/logo/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/logo/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#b39b91",
+  "background_color": "#b39b91",
+  "display": "standalone",
+  "start_url": "./"
+}
