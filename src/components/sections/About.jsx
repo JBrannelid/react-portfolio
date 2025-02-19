@@ -107,7 +107,7 @@ const About = () => {
                 pursue a career as a radiology nurse/radiographer.
               </p>
               <p>
-                Sense 2017, I have worked in emergency care radiology at
+                Since 2017, I have worked in emergency care radiology at
                 Karolinska University Hospital. Taking on various roles in both
                 clinical, leadership and management.
               </p>
