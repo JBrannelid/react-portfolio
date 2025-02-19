@@ -65,7 +65,7 @@ const Home = () => {
             </div>
           </div>
           <img
-            src="./assets/portrait/profilbild2.png"
+            src="./assets/portrait/profilbild2.webp"
             alt="Profile"
             className="absolute bottom-0 left-1/2 z-0 h-[90vh] max-w-full sm:max-w-[500px] -translate-x-1/2 hidden sm:block"
           />

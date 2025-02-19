@@ -194,7 +194,7 @@ export default function Contact() {
           <div className="lg:flex lg:mt-0 lg:flex-col lg:items-center lg:w-1/2 lg:mx-10">
             <img
               className="mt-20 hidden object-cover mx-auto rounded-full lg:block shrink-0 w-80 h-80"
-              src="./assets/portrait/IMG_2402.JPG"
+              src="./assets/portrait/IMG_2402.webp"
               alt="Contact illustration"
             />
           </div>

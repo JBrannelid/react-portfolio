@@ -43,6 +43,12 @@
 
     /* Transition properties */
     --theme-transition: background-color 0.3s ease, color 0.3s ease;
+
+    /*  Set min-dvh to handle divices dynamiska viewport-hight */
+    min-height: 100dvh;
+    background: var(--primary-bg);
+    position: relative;
+    z-index: 0;
 }
 
 /* Dark mode variabel-override */
@@ -76,8 +82,9 @@ body {
     background: var(--primary-bg);
     color: var(--text-color);
     transition: var(--theme-transition);
-
-    /* Additional Utility Classes */
+    min-height: 100dvh;
+    overflow-x: hidden;
+    /* Förhindra horisontell scrollning */
     box-sizing: border-box;
 }
 
