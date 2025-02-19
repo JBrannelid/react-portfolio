@@ -16,21 +16,12 @@ const LoadingSpinner = () => (
   </div>
 );
 
-// Determine the basename based on environment
-const getBasename = () => {
-  // In development, use empty string; in production use /react-portfolio
-  if (import.meta.env.DEV) {
-    return "";
-  }
-  return "/react-portfolio";
-};
-
 function App() {
   return (
     <ThemeProvider>
       <div className="app-root min-h-screen bg-[var(--primary-bg)] transition-colors duration-300">
         {/* Ensure we pass correct basename */}
-        <BrowserRouter basename={getBasename()}>
+        <BrowserRouter>
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
               <Route path="/*" element={<MemoizedLayout />} />

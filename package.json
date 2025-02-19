@@ -1,5 +1,5 @@
 {
-  "homepage": "https://jbrannelid.github.io/react-portfolio/",
+  "homepage": "https://jbrannelid.com/",
   "name": "react-portfolio",
   "private": true,
   "version": "1.0.0",
@@ -8,9 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview --port 8080 --host",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview --port 8080 --host"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",

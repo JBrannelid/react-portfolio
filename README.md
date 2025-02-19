@@ -1,12 +1,12 @@
 # Johannes Brannelid Portfolio
 
-![Portfolio Banner](https://jbrannelid.github.io/react-portfolio/assets/logo/favicon.svg)
+![Portfolio Banner](https://jbrannelid.com/assets/logo/favicon.svg)
 
 ## 📌 Overview
 
 A responsive portfolio website built with React and Tailwind CSS. This single-page application (SPA) showcases experience, skills, and projects while providing a seamless user experience with dark/light mode support.
 
-🚀 **Live Demo**: [https://jbrannelid.github.io/react-portfolio/](https://jbrannelid.github.io/react-portfolio/)
+🚀 **Live Demo**: [https://jbrannelid.com/](https://jbrannelid.com/)
 
 ## ✨ Features
 
@@ -32,7 +32,7 @@ A responsive portfolio website built with React and Tailwind CSS. This single-pa
 
 - Vite 6.1
 - ESLint
-- GitHub Pages for deployment
+- Netlify for hosting and deployment
 
 ### Key Components:
 

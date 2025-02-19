@@ -4,8 +4,7 @@ import compression from "vite-plugin-compression";
 
 // Build project by code-split the application
 export default defineConfig({
-  // Add base path for GitHub Pages
-  base: process.env.NODE_ENV === "production" ? "/react-portfolio/" : "/",
+  base: "/",
   plugins: [
     react(),
     compression({

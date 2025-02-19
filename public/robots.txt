@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jbrannelid.github.io/react-portfolio/sitemap.xml
+Sitemap: https://jbrannelid.com/sitemap.xml
