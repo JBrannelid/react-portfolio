@@ -16,11 +16,17 @@ export default defineConfig({
           routing: ["react-router-dom", "react-scroll"],
 
           // Split FontAwesome (large dependency) into its own chunk
-          "fontawesome-core": ["@fortawesome/fontawesome-svg-core"],
           "fontawesome-solid": ["@fortawesome/free-solid-svg-icons"],
-          "fontawesome-regular": ["@fortawesome/free-regular-svg-icons"],
           "fontawesome-brands": ["@fortawesome/free-brands-svg-icons"],
-          "fontawesome-react": ["@fortawesome/react-fontawesome"],
+        },
+        assetFileNames: (assetInfo) => {
+          if (
+            assetInfo.name &&
+            /\.(woff2?|ttf|otf|eot)$/.test(assetInfo.name)
+          ) {
+            return "assets/fonts/[name][extname]";
+          }
+          return "assets/[name]-[hash][extname]";
         },
       },
     },

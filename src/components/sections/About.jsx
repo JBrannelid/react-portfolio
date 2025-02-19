@@ -8,6 +8,8 @@ const About = () => {
       caption: "Grace in Motion",
       alt: "My daughter before balett traningsession",
       order: "lg:order-1 order-2",
+      width: 400,
+      height: 400,
     },
     {
       isText: true,
@@ -19,30 +21,40 @@ const About = () => {
       caption: "Match Day Energy",
       alt: "My son before a football game",
       order: "lg:order-3 order-3",
+      width: 400,
+      height: 400,
     },
     {
       src: "./assets/portrait/elina_linnea_remove_bg.webp",
       caption: "Autumn Harvest",
       alt: "Autumn Harvest with my daughter and wife",
       order: "lg:order-4 order-4",
+      width: 400,
+      height: 400,
     },
     {
       src: "./assets/portrait/Johannes.webp",
       caption: "Leg.Radiographer",
       alt: "Radiographer profile picture",
       order: "lg:order-5 order-5",
+      width: 400,
+      height: 400,
     },
     {
       src: "./assets/portrait/SandSurfing.webp",
       caption: "Desert Adventures",
       alt: "Travel image in the dessert",
       order: "lg:order-6 order-6",
+      width: 400,
+      height: 400,
     },
     {
       src: "./assets/portrait/Linnea.webp",
       caption: "The Heart of Our Home",
       alt: "My wife in a natural moment",
       order: "lg:order-7 order-7",
+      width: 400,
+      height: 400,
     },
   ];
 
@@ -151,6 +163,9 @@ const About = () => {
                       src={image.src}
                       alt={image.alt}
                       className="w-full h-full object-cover"
+                      width={image.width || 240}
+                      height={image.height || 240}
+                      loading="lazy"
                     />
                   </div>
                   <figcaption className="mt-2 text-sm font-medium text-[var(--primary-bg)] text-center">

@@ -1,10 +1,12 @@
 import React from "react";
 
-const NavbarLogo = () => {
+const NavbarLogo = ({ hideTextOnMobile = false }) => {
   return (
     <div>
       <h1 className="hidden lg:block text-2xl">Johannes Brannelid</h1>
-      <h1 className="block lg:hidden text-4xl font-bold">JB</h1>
+      {!hideTextOnMobile && (
+        <h1 className="block lg:hidden text-4xl font-bold">JB</h1>
+      )}
     </div>
   );
 };

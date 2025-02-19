@@ -76,6 +76,10 @@ const Skills = () => {
               src="https://github-readme-stats.vercel.app/api/wakatime?username=JBrannelid&hide=html&hide_title=true&hide_border=true&langs_count=6&text_color=ffffff&theme=transparent&title_color=ec8b2a"
               alt="Coding Time Statistics"
               aria-live="polite"
+              width="800"
+              height="300"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </section>

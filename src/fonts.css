@@ -1,0 +1,59 @@
+/* Josefin Sans - Regular */
+@font-face {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/assets/fonts/josefin-sans/JosefinSans-Regular.woff2') format('woff2'),
+        url('/assets/fonts/josefin-sans/JosefinSans-Regular.woff') format('woff');
+}
+
+/* Josefin Sans - SemiBold Italic */
+@font-face {
+    font-family: 'Josefin Sans';
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/assets/fonts/josefin-sans/JosefinSans-SemiBoldItalic.woff2') format('woff2'),
+        url('/assets/fonts/josefin-sans/JosefinSans-SemiBoldItalic.woff') format('woff');
+}
+
+/* Roboto - Regular */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/assets/fonts/roboto/Roboto-Regular.woff2') format('woff2'),
+        url('/assets/fonts/roboto/Roboto-Regular.woff') format('woff');
+}
+
+/* Roboto - Black Italic */
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 900;
+    font-display: swap;
+    src: url('/assets/fonts/roboto/Roboto-BlackItalic.woff2') format('woff2'),
+        url('/assets/fonts/roboto/Roboto-BlackItalic.woff') format('woff');
+}
+
+/* Roboto Condensed - Black */
+@font-face {
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url('/assets/fonts/roboto/RobotoCondensed-Black.woff2') format('woff2'),
+        url('/assets/fonts/roboto/RobotoCondensed-Black.woff') format('woff');
+}
+
+/* Roboto Semi Condensed - Extra Bold */
+@font-face {
+    font-family: 'Roboto Semi Condensed';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url('/assets/fonts/roboto/RobotoSemiCondensed-ExtraBold.woff2') format('woff2'),
+        url('/assets/fonts/roboto/RobotoSemiCondensed-ExtraBold.woff') format('woff');
+}

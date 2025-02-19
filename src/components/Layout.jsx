@@ -1,26 +1,68 @@
-import { useEffect, lazy, Suspense } from "react";
+import { useEffect, lazy, Suspense, memo } from "react";
 import { useLocation } from "react-router-dom";
 import NavbarMain from "./navbar/NavbarMain";
 import Home from "./sections/Home";
-// Lazy load non-critical sections for a better site performance
-const About = lazy(() => import("./sections/About"));
-const Experience = lazy(() => import("./sections/Experience"));
-const Portfolio = lazy(() => import("./sections/Portfolio"));
-const Contact = lazy(() => import("./sections/Contact"));
-const Skills = lazy(() => import("./sections/Skills"));
-const Footer = lazy(() => import("./sections/Footer"));
-
 import { ActiveSectionProvider } from "../context/ActiveSectionContext";
 
-// Loading spinner component with section ID for proper tracking
-const LoadingSpinner = ({ sectionId }) => (
+// Define preload function to start loading chunks earlier
+const preloadComponent = (factory) => {
+  const Component = lazy(factory);
+  Component.preload = factory;
+  return Component;
+};
+
+// Lazy load non-critical sections with preload capability
+const About = preloadComponent(() => import("./sections/About"));
+const Experience = preloadComponent(() => import("./sections/Experience"));
+const Portfolio = preloadComponent(() => import("./sections/Portfolio"));
+const Contact = preloadComponent(() => import("./sections/Contact"));
+const Skills = preloadComponent(() => import("./sections/Skills"));
+const Footer = preloadComponent(() => import("./sections/Footer"));
+
+// Memoized spinner to prevent rerenders
+const LoadingSpinner = memo(({ sectionId }) => (
   <div id={sectionId} className="flex items-center justify-center min-h-[50vh]">
     <div className="w-12 h-12 border-4 border-[var(--accent-orange-color)] border-t-transparent rounded-full animate-spin"></div>
   </div>
-);
+));
+
+// Memoized section divider to prevent rerenders
+const SectionDivider = memo(() => (
+  <div className="my-20">
+    <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-[var(--accent-orange-color)] to-transparent" />
+  </div>
+));
+
+// Standardized section wrapper with consistent spacing
+const Section = memo(({ id, children, isHome }) => (
+  <section
+    id={id}
+    className={`scroll-mt-24 relative ${isHome ? "min-h-screen" : "min-h-screen"}`}
+    data-section-id={id}
+  >
+    <div className={`${isHome ? "" : "py-20"}`}>{children}</div>
+    {!isHome && <SectionDivider />}
+  </section>
+));
 
 const Layout = () => {
   const location = useLocation();
+
+  // Preload components on idle time
+  useEffect(() => {
+    if ("requestIdleCallback" in window) {
+      const handle = requestIdleCallback(() => {
+        // Start preloading other sections during idle time
+        About.preload();
+        Skills.preload();
+        Portfolio.preload();
+        Experience.preload();
+        Contact.preload();
+        Footer.preload();
+      });
+      return () => cancelIdleCallback(handle);
+    }
+  }, []);
 
   useEffect(() => {
     const path = location.pathname.slice(1) || "home";
@@ -31,6 +73,7 @@ const Layout = () => {
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - navbarHeight;
 
+      // Use passive scroll for better performance
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth",
@@ -38,28 +81,6 @@ const Layout = () => {
     }
   }, [location]);
 
-  // CSS styling för horisontell line between every section (home, about...)
-  const SectionDivider = () => (
-    <div className="my-20">
-      <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-[var(--accent-orange-color)] to-transparent" />
-    </div>
-  );
-
-  // Standardized section wrapper with consistent spacing
-  const Section = ({ id, children, isHome }) => (
-    <section
-      id={id}
-      className={`scroll-mt-24 relative ${
-        isHome ? "min-h-screen" : "min-h-screen"
-      }`}
-      data-section-id={id}
-    >
-      <div className={`${isHome ? "" : "py-20"}`}>{children}</div>
-      {!isHome && <SectionDivider />}
-    </section>
-  );
-
-  // Layout component manages the single-page-application (SPA) structure
   return (
     <ActiveSectionProvider>
       <div className="relative">

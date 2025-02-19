@@ -196,6 +196,9 @@ export default function Contact() {
               className="mt-20 hidden object-cover mx-auto rounded-full lg:block shrink-0 w-80 h-80"
               src="./assets/portrait/IMG_2402.webp"
               alt="Contact illustration"
+              width="320"
+              height="320"
+              loading="lazy" // Lazy loading for better performance as Contact is the last section
             />
           </div>
         </div>
