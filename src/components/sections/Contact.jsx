@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Mail } from "lucide-react";
 import { getAssetPath } from "../../utils/assetUtils";
 
 export default function Contact() {
@@ -207,10 +207,7 @@ export default function Contact() {
         {/* Contact Email with href link */}
         <div className="flex justify-end items-center mt-12 mb-6">
           <div className="flex items-center gap-3 bg-white/10 px-6 py-3 rounded-full">
-            <FontAwesomeIcon
-              icon={["fas", "envelope"]}
-              className="text-[var(--accent-orange-color)]"
-            />
+            <Mail className="text-[var(--accent-orange-color)]" />
             <a
               href="mailto:J.Brannelid@icloud.com"
               className="text-[var(--text-color)] hover:text-[var(--accent1-orange-color)] transition-colors duration-300"

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ChevronLeft } from "lucide-react";
 
 const NotFound = () => {
   return (
@@ -22,7 +22,7 @@ const NotFound = () => {
         >
           <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ec8b2a_0%,#ffd621_50%,#ec8b2a_100%)]" />
           <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-orange-500/70 to-yellow-600/70 px-6 text-sm backdrop-blur-3xl transition-all duration-300 hover:bg-amber-600 gap-2">
-            <FontAwesomeIcon icon="chevron-left" />
+            <ChevronLeft size={16} />
             Back to Home
           </span>
         </Link>

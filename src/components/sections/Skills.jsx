@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Monitor, Server, GitBranch, ChevronRight, Circle } from "lucide-react";
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState(null);
@@ -7,7 +7,7 @@ const Skills = () => {
   const skillCategories = [
     {
       title: "Frontend Development",
-      icon: <FontAwesomeIcon icon={["fas", "desktop"]} className="w-5 h-5" />,
+      icon: <Monitor className="w-5 h-5" />,
       description: "Building responsive and interactive user interfaces",
       skills: [
         { name: "HTML5" },
@@ -21,7 +21,7 @@ const Skills = () => {
     },
     {
       title: "Backend Development",
-      icon: <FontAwesomeIcon icon={["fas", "server"]} className="w-5 h-5" />,
+      icon: <Server className="w-5 h-5" />,
       description: "Creating robust server-side applications",
       skills: [
         { name: "C#" },
@@ -35,9 +35,7 @@ const Skills = () => {
     },
     {
       title: "Tools & Version Control",
-      icon: (
-        <FontAwesomeIcon icon={["fas", "code-branch"]} className="w-5 h-5" />
-      ),
+      icon: <GitBranch className="w-5 h-5" />,
       description: "Essential development tools and practices",
       skills: [
         { name: "Git" },
@@ -110,8 +108,7 @@ const Skills = () => {
                     </div>
                   </div>
                   {/* arrow icon for displaying open and closed card */}
-                  <FontAwesomeIcon
-                    icon={["fas", "chevron-right"]}
+                  <ChevronRight
                     className={`transform transition-transform duration-300 ${
                       activeCategory === index ? "rotate-90" : ""
                     }`}
@@ -128,10 +125,7 @@ const Skills = () => {
                   <div className="pt-4 space-y-3">
                     {category.skills.map((skill, skillIndex) => (
                       <div key={skillIndex} className="flex items-center gap-2">
-                        <FontAwesomeIcon
-                          icon={["fas", "circle"]}
-                          className="w-2 h-2"
-                        />
+                        <Circle className="w-2 h-2" />
                         <span>{skill.name}</span>
                       </div>
                     ))}

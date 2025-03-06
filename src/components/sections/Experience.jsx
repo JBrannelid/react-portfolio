@@ -1,6 +1,13 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import myExperienceData from "../../assets/myExperience.json";
+import {
+  ChevronUp,
+  ChevronDown,
+  Briefcase,
+  GraduationCap,
+  Award,
+  Medal,
+} from "lucide-react";
 
 const Experience = () => {
   const { experience, education, additionalEducation, certifications } =
@@ -24,7 +31,7 @@ const Experience = () => {
     id,
     isExpanded,
     onToggle,
-    alwaysExpanded = false, // Always expand Certification section
+    alwaysExpanded = false,
   }) => (
     <div className="relative pl-8 pb-8 group">
       {/* Timeline line */}
@@ -39,7 +46,7 @@ const Experience = () => {
           {/* Title and period always visible */}
           <div className="flex items-start justify-between">
             <div>
-              <h3 className="text-xl font-semibold ">{title}</h3>
+              <h3 className="text-xl font-semibold">{title}</h3>
               <span className="text-sm opacity-80">{period}</span>
             </div>
             {!alwaysExpanded && (
@@ -47,21 +54,18 @@ const Experience = () => {
                 className="p-1 hover:bg-white/10 rounded-full transition-colors"
                 onClick={() => onToggle(id)}
               >
-                <FontAwesomeIcon
-                  icon={
-                    isExpanded
-                      ? ["fas", "chevron-down"]
-                      : ["fas", "chevron-right"]
-                  }
-                  className="w-4 h-4"
-                />
+                {isExpanded ? (
+                  <ChevronUp className="w-4 h-4" />
+                ) : (
+                  <ChevronDown className="w-4 h-4" />
+                )}
               </button>
             )}
           </div>
         </div>
 
         <div
-          className={`transition-all duration-300 overflow-hidden ${
+          className={`transition-all duration-300 overflow-hidden ease-in-out ${
             alwaysExpanded || isExpanded
               ? "max-h-[500px] opacity-100"
               : "max-h-0 opacity-0"
@@ -74,17 +78,13 @@ const Experience = () => {
   );
 
   // Tab Button Component
-  const TabButton = ({ active, iconName, label, onClick }) => (
+  const TabButton = ({ active, icon, label, onClick }) => (
     <button
       onClick={onClick}
       className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300
-        ${
-          active
-            ? "bg-[var(--accent-orange-color)] text-white"
-            : "bg-white/5 hover:bg-white/10"
-        }`}
+        ${active ? "bg-[var(--accent-orange-color)] text-white" : "bg-white/5 hover:bg-white/10"}`}
     >
-      <FontAwesomeIcon icon={["fas", iconName]} className="w-4 h-4" />
+      {icon}
       <span>{label}</span>
     </button>
   );
@@ -109,25 +109,25 @@ const Experience = () => {
       <div className="flex flex-wrap gap-4 justify-center mb-12">
         <TabButton
           active={activeTab === "experience"}
-          iconName="briefcase"
+          icon={<Briefcase className="w-4 h-4" />}
           label="Work Experience"
           onClick={() => setActiveTab("experience")}
         />
         <TabButton
           active={activeTab === "education"}
-          iconName="graduation-cap"
+          icon={<GraduationCap className="w-4 h-4" />}
           label="Education"
           onClick={() => setActiveTab("education")}
         />
         <TabButton
           active={activeTab === "additional"}
-          iconName="award"
+          icon={<Award className="w-4 h-4" />}
           label="Additional Training"
           onClick={() => setActiveTab("additional")}
         />
         <TabButton
           active={activeTab === "certifications"}
-          iconName="certificate"
+          icon={<Medal className="w-4 h-4" />}
           label="Certifications"
           onClick={() => setActiveTab("certifications")}
         />

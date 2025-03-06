@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useTheme } from "../../context/ThemeContext";
+import { Instagram, Linkedin, Github, Sun, Moon } from "lucide-react";
+import { useTheme } from "../../context/AppContext";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -20,7 +20,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-2xl hover:text-[var(--accent-orange-color)] transition-colors duration-300"
             >
-              <FontAwesomeIcon icon={["fab", "instagram"]} />
+              <Instagram size={24} />
             </a>
             <a
               href="https://www.linkedin.com/in/johannes-brannelid"
@@ -30,7 +30,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-2xl hover:text-[var(--accent-orange-color)] transition-colors duration-300"
             >
-              <FontAwesomeIcon icon={["fab", "linkedin"]} />
+              <Linkedin size={24} />
             </a>
             <a
               href="https://github.com/JBrannelid"
@@ -40,7 +40,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-2xl hover:text-[var(--accent-orange-color)] transition-colors duration-300"
             >
-              <FontAwesomeIcon icon={["fab", "github"]} />
+              <Github size={24} />
             </a>
           </div>
         </section>
@@ -62,10 +62,17 @@ const Footer = () => {
             aria-label="Toggle dark mode"
             onClick={toggleTheme}
           >
-            <FontAwesomeIcon
-              icon={theme === "dark" ? ["fas", "moon"] : ["fas", "sun"]}
-              className="transition-transform duration-300 ease-in-out hover:scale-110"
-            />
+            {theme === "dark" ? (
+              <Moon
+                size={24}
+                className="transition-transform duration-300 ease-in-out hover:scale-110"
+              />
+            ) : (
+              <Sun
+                size={24}
+                className="transition-transform duration-300 ease-in-out hover:scale-110"
+              />
+            )}
           </button>
         </section>
       </div>

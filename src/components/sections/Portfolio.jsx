@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Loader, Github, Link, Circle } from "lucide-react";
 
 const Portfolio = () => {
   const [projects, setProjects] = useState([]);
@@ -91,10 +91,7 @@ const Portfolio = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <FontAwesomeIcon
-          icon={["fas", "spinner"]}
-          className="w-8 h-8 animate-spin text-[var(--accent-orange-color)]"
-        />
+        <Loader className="w-8 h-8 animate-spin text-[var(--accent-orange-color)]" />
       </div>
     );
   }
@@ -167,7 +164,7 @@ const Portfolio = () => {
                   className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 
                     hover:bg-white/20 transition-colors duration-300"
                 >
-                  <FontAwesomeIcon icon={["fab", "github"]} />
+                  <Github size={16} />
                   <span>Code</span>
                 </a>
 
@@ -180,7 +177,7 @@ const Portfolio = () => {
                     className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 
                       hover:bg-white/20 transition-colors duration-300"
                   >
-                    <FontAwesomeIcon icon={["fas", "link"]} />
+                    <Link size={16} />
                     <span>Live Demo</span>
                   </a>
                 )}

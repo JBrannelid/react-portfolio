@@ -108,10 +108,3 @@ h2 {
 .dark-mode *::-webkit-scrollbar-thumb {
     border-color: var(--secondary-bg);
 }
-
-/* Make hover effects work regardless of device detection */
-/* a:hover,
-button:hover,
-.your-hover-elements:hover {
-    opacity: 0.8 !important;
-} */

@@ -1,7 +1,7 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import resumeData from "../../assets/myExperience.json";
 import { getAssetPath } from "../../utils/assetUtils";
+import { ScrollText } from "lucide-react";
 
 const Home = () => {
   const { downloadOptions } = resumeData.resume;
@@ -32,19 +32,19 @@ const Home = () => {
                   Download my CV <br />
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-4 max-w-[300px]">
                   {/* Swedish CV Button */}
                   <a
                     href={getAssetPath(
                       `assets/cv/${downloadOptions.swedish.filename}`
                     )}
                     download
-                    className="relative inline-flex h-12 overflow-hidden"
+                    className="inline-block"
                   >
-                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-[5px] border-amber-400 border-1 bg-gradient-to-r from-orange-600/70 to-amber-400/70  px-6 text-sm  backdrop-blur-3xl transition-all duration-300 hover:bg-amber-600 gap-2">
-                      <FontAwesomeIcon icon={["fas", "file-pdf"]} />
-                      CV Svenska
-                    </span>
+                    <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-orange-600/70 to-amber-400/70 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-md hover:opacity-80 transition duration-300 whitespace-nowrap">
+                      <ScrollText className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
+                      <span className="text-sm sm:text-base">CV Svenska</span>
+                    </div>
                   </a>
 
                   {/* English CV Button */}
@@ -53,12 +53,14 @@ const Home = () => {
                       `assets/cv/${downloadOptions.english.filename}`
                     )}
                     download
-                    className="relative inline-flex h-12 overflow-hidden"
+                    className="inline-block"
                   >
-                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-[5px] border-amber-400 border-1 bg-gradient-to-r from-amber-400/70 to-orange-600/70 px-6 text-sm  backdrop-blur-3xl transition-all duration-300 hover:bg-amber-600 gap-2">
-                      <FontAwesomeIcon icon={["fas", "file-pdf"]} />
-                      Resume English
-                    </span>
+                    <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-orange-600/70 to-amber-400/70 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-md hover:opacity-80 transition duration-300 whitespace-nowrap">
+                      <ScrollText className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
+                      <span className="text-sm sm:text-base">
+                        Resume English
+                      </span>
+                    </div>
                   </a>
                 </div>
                 <span className="text-xs text-white opacity-90">
