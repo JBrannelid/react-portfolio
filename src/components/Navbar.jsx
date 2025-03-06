@@ -44,7 +44,7 @@ const Navbar = () => {
   };
 
   // CSS classes
-  const navbarClasses = `fixed left-1/2 z-20 mt-2 flex w-full max-w-[1300px] -translate-x-1/2 gap-4 px-4
+  const navbarClasses = `fixed left-1/2 z-20 mt-7 sm:mt-2 flex w-full max-w-[1300px] -translate-x-1/2 gap-4 px-4
     transition-transform duration-300 ease-in-out
     ${scrollDirection === "down" && isScrolled ? "-translate-y-24" : "translate-y-0"}`;
 
@@ -119,7 +119,7 @@ const Navbar = () => {
         {menuOpen && (
           <ul
             className="flex flex-col gap-6 text-center 
-                     fixed w-[80vw] left-1/2 -translate-x-1/2 top-20
+                     fixed w-[80vw] left-1/2 -translate-x-1/2 top-32
                      bg-[var(--nav-bg)]/95 backdrop-blur-lg rounded-2xl 
                      py-8 border border-[var(--accent-orange-color)]
                      shadow-xl max-h-[80vh] overflow-y-auto"
