@@ -48,9 +48,9 @@ const NavbarLinks = ({ setMenuOpen }) => {
                   : "hover:bg-white/10 sm:hover:bg-transparent"
               }`}
             >
-              <span className="relative text-xl lg:text-base">
+              <span className="relative inline-block text-xl lg:text-base">
                 {name}
-                <div className="absolute left-0 bottom-0 bg-[var(--accent-orange-color)] w-0 group-hover:w-full h-[1px] transition-all duration-500" />
+                <div className="absolute left-0 bottom-0 bg-[var(--accent-orange-color)] w-0 group-hover:w-full h-[1px] transition-all duration-500 ease-in-out" />
               </span>
             </NavLink>
           </li>

@@ -20,7 +20,6 @@ function App() {
   return (
     <ThemeProvider>
       <div className="app-root min-h-screen bg-[var(--primary-bg)] transition-colors duration-300">
-        {/* Ensure we pass correct basename */}
         <BrowserRouter>
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>

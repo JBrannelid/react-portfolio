@@ -130,8 +130,8 @@ const Portfolio = () => {
           <article
             key={project.id}
             className={`group relative overflow-hidden rounded-xl bg-gradient-to-r ${project.colorTheme} 
-              p-6 transition-all duration-300 hover:scale-[1.03] flex flex-col
-              border border-white/10 backdrop-blur-sm`}
+    p-6 transform transition-all duration-300 hover:scale-[1.03] flex flex-col
+    border border-white/10 backdrop-blur-sm hover:border-[var(--accent-orange-color)]/50`}
           >
             <div className="mb-4">
               {/* Project name */}
@@ -145,7 +145,7 @@ const Portfolio = () => {
               </div>
               {/* Project Title */}
               <h2 className="text-2xl font-bold mb-2">{project.name}</h2>
-              <p className="text-sm opacity-80 mb-4 line-clamp-3">
+              <p className="text-sm opacity-80 mb-4">
                 {/* Fallback if no description is available from GitHub */}
                 {project.description || "No description available"}
               </p>

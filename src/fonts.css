@@ -4,8 +4,8 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('/react-portfolio/assets/fonts/josefin-sans/JosefinSans-Regular.woff2') format('woff2'),
-        url('/react-portfolio/assets/fonts/josefin-sans/JosefinSans-Regular.woff') format('woff');
+    src: url('/assets/fonts/josefin-sans/JosefinSans-Regular.woff2') format('woff2'),
+        url('/assets/fonts/josefin-sans/JosefinSans-Regular.woff') format('woff');
 }
 
 /* Josefin Sans - SemiBold Italic */
@@ -14,8 +14,8 @@
     font-style: italic;
     font-weight: 600;
     font-display: swap;
-    src: url('/react-portfolio/assets/fonts/josefin-sans/JosefinSans-SemiBoldItalic.woff2') format('woff2'),
-        url('/react-portfolio/assets/fonts/josefin-sans/JosefinSans-SemiBoldItalic.woff') format('woff');
+    src: url('/assets/fonts/josefin-sans/JosefinSans-SemiBoldItalic.woff2') format('woff2'),
+        url('/assets/fonts/josefin-sans/JosefinSans-SemiBoldItalic.woff') format('woff');
 }
 
 /* Roboto - Regular */
@@ -24,8 +24,8 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('/react-portfolio/assets/fonts/roboto/Roboto-Regular.woff2') format('woff2'),
-        url('/react-portfolio/assets/fonts/roboto/Roboto-Regular.woff') format('woff');
+    src: url('/assets/fonts/roboto/Roboto-Regular.woff2') format('woff2'),
+        url('/assets/fonts/roboto/Roboto-Regular.woff') format('woff');
 }
 
 /* Roboto - Black Italic */
@@ -34,8 +34,8 @@
     font-style: italic;
     font-weight: 900;
     font-display: swap;
-    src: url('/react-portfolio/assets/fonts/roboto/Roboto-BlackItalic.woff2') format('woff2'),
-        url('/react-portfolio/assets/fonts/roboto/Roboto-BlackItalic.woff') format('woff');
+    src: url('/assets/fonts/roboto/Roboto-BlackItalic.woff2') format('woff2'),
+        url('/assets/fonts/roboto/Roboto-BlackItalic.woff') format('woff');
 }
 
 /* Roboto Condensed - Black */
@@ -44,8 +44,8 @@
     font-style: normal;
     font-weight: 900;
     font-display: swap;
-    src: url('/react-portfolio/assets/fonts/roboto/RobotoCondensed-Black.woff2') format('woff2'),
-        url('/react-portfolio/assets/fonts/roboto/RobotoCondensed-Black.woff') format('woff');
+    src: url('/assets/fonts/roboto/RobotoCondensed-Black.woff2') format('woff2'),
+        url('/assets/fonts/roboto/RobotoCondensed-Black.woff') format('woff');
 }
 
 /* Roboto Semi Condensed - Extra Bold */
@@ -54,6 +54,6 @@
     font-style: normal;
     font-weight: 800;
     font-display: swap;
-    src: url('/react-portfolio/assets/fonts/roboto/RobotoSemiCondensed-ExtraBold.woff2') format('woff2'),
-        url('/react-portfolio/assets/fonts/roboto/RobotoSemiCondensed-ExtraBold.woff') format('woff');
+    src: url('/assets/fonts/roboto/RobotoSemiCondensed-ExtraBold.woff2') format('woff2'),
+        url('/assets/fonts/roboto/RobotoSemiCondensed-ExtraBold.woff') format('woff');
 }

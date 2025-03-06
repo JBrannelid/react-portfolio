@@ -23,7 +23,7 @@ const LoadingSpinner = ({ sectionId }) => (
 // Divider between sections for better visual organization
 const SectionDivider = () => (
   <div className="my-20">
-    <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-[var(--accent-orange-color)] to-transparent" />
+    <div className="h-0.7 w-full bg-gradient-to-r from-transparent via-[var(--accent-yellow-color)] to-transparent" />
   </div>
 );
 

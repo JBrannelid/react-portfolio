@@ -1,12 +1,14 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import compression from "vite-plugin-compression";
+import tailwindcss from "@tailwindcss/vite"; // Se till att detta importeras korrekt
 
 // Build project by code-split the application
 export default defineConfig({
   base: "/",
   plugins: [
     react(),
+    tailwindcss(), // Lägg till Tailwind-plugin
     compression({
       algorithm: "gzip",
       ext: ".gz",

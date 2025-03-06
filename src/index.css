@@ -3,9 +3,8 @@
     all config customizations is directly done in CSS file 
 */
 
-/* Import tailwond css first then fonts after initial tailwind render */
 @import "tailwindcss";
-@import "./fonts.css" print;
+@import "./fonts.css";
 
 /* Root variables */
 :root {
@@ -16,8 +15,9 @@
     --secondary-bg: #ffffff;
     --nav-bg: #856455;
     --Btn-bg: #6e4b3b;
-    --accent-orange-color: #ec8b2a;
-    --accent1-orange-color: #ffd621;
+    --accent-orange-color: #ff8000;
+    --accent-yellow-color: #ffee00;
+    --accent1-orange-color: #fad11d;
     --text-color: #ffffff;
     --placeholder-color: #595959;
     --input-border-color: #bfbfbf;
@@ -28,6 +28,11 @@
     min-height: 100dvh;
     background: var(--primary-bg);
 }
+
+/* In tailwind v4. Hover variant only apply when the primary input device supports hover"
+*  Touch displays computer broke hoover effect.
+*  Apply custom variant to make hover work on all devices */
+@custom-variant hover (&:hover);
 
 /* Reset */
 html,
@@ -103,3 +108,10 @@ h2 {
 .dark-mode *::-webkit-scrollbar-thumb {
     border-color: var(--secondary-bg);
 }
+
+/* Make hover effects work regardless of device detection */
+/* a:hover,
+button:hover,
+.your-hover-elements:hover {
+    opacity: 0.8 !important;
+} */

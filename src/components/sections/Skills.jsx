@@ -92,7 +92,9 @@ const Skills = () => {
             {skillCategories.map((category, index) => (
               <div
                 key={index}
-                className={`rounded-xl border ${category.borderColor} ${category.bgColor} p-6 transition-all duration-300 hover:scale-[1.02] cursor-pointer`}
+                className={`rounded-xl border ${category.borderColor} ${category.bgColor} p-6 
+    transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg 
+    cursor-pointer hover:border-[var(--accent-orange-color)]/50`}
                 onClick={() =>
                   setActiveCategory(activeCategory === index ? null : index)
                 }

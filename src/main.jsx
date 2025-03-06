@@ -32,6 +32,18 @@ import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 
+// Then after your imports but before rendering:
+document.addEventListener("DOMContentLoaded", () => {
+  // This should now always be true because of our override
+  const hoverSupported = window.matchMedia("(hover: hover)").matches;
+  console.log("Hover capability (forced):", hoverSupported);
+
+  document.documentElement.classList.add("hover-capable");
+
+  // Add this class to force all hover styles
+  document.body.classList.add("force-hover");
+});
+
 // Add all icons immediately
 library.add(
   // Solid icons

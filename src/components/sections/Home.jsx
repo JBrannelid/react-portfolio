@@ -12,7 +12,7 @@ const Home = () => {
         <div className="flex h-full items-center justify-between flex-wrap">
           <div className="relative z-10 w-full max-w-[600px] pl-5 sm:pl-10 md:pl-12 lg:pl-16">
             <h2 className="mb-4 text-3xl">Welcome!</h2>
-            <h1 className="mb-4 text-4xl text-[var(--accent-orange-color)]">
+            <h1 className="mb-4 text-4xl text-[var(--accent-yellow-color)]">
               I'm Johannes Brannelid
             </h1>
 
@@ -39,10 +39,9 @@ const Home = () => {
                       `assets/cv/${downloadOptions.swedish.filename}`
                     )}
                     download
-                    className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 group"
+                    className="relative inline-flex h-12 overflow-hidden"
                   >
-                    <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ec8b2a_0%,#ffd621_50%,#ec8b2a_100%)]" />
-                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-orange-500/70 to-yellow-600/70 px-6 text-sm  backdrop-blur-3xl transition-all duration-300 hover:bg-amber-600 gap-2">
+                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-[5px] border-amber-400 border-1 bg-gradient-to-r from-orange-600/70 to-amber-400/70  px-6 text-sm  backdrop-blur-3xl transition-all duration-300 hover:bg-amber-600 gap-2">
                       <FontAwesomeIcon icon={["fas", "file-pdf"]} />
                       CV Svenska
                     </span>
@@ -54,10 +53,9 @@ const Home = () => {
                       `assets/cv/${downloadOptions.english.filename}`
                     )}
                     download
-                    className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 group"
+                    className="relative inline-flex h-12 overflow-hidden"
                   >
-                    <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ec8b2a_0%,#ffd621_50%,#ec8b2a_100%)]" />
-                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-yellow-600/60 to-orange-500/70 px-6 text-sm backdrop-blur-3xl transition-all duration-300 hover:bg-amber-600 gap-2">
+                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-[5px] border-amber-400 border-1 bg-gradient-to-r from-amber-400/70 to-orange-600/70 px-6 text-sm  backdrop-blur-3xl transition-all duration-300 hover:bg-amber-600 gap-2">
                       <FontAwesomeIcon icon={["fas", "file-pdf"]} />
                       Resume English
                     </span>
