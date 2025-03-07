@@ -1,70 +1,56 @@
-/* CSS Based Configuration
-    In tailwind v4, instead of using javascript tailwind.config.js - 
-    all config customizations is directly done in CSS file 
-*/
-
 @import "tailwindcss";
 @import "./fonts.css";
 
-/* Root variables */
 :root {
-    /* Light scheme as default */
     color-scheme: light;
-    /* Essential Colors */
+
+    /* Basic theme colors - Light theme by default */
     --primary-bg: #b39b91;
     --secondary-bg: #ffffff;
+    --text-color: #ffffff;
+
+    /* UI Elements */
     --nav-bg: #856455;
     --Btn-bg: #6e4b3b;
+
+    /* Accent colors */
     --accent-orange-color: #ff8000;
     --accent-yellow-color: #ffee00;
     --accent1-orange-color: #fad11d;
-    --text-color: #ffffff;
+
+    /* Form elements */
     --placeholder-color: #595959;
     --input-border-color: #bfbfbf;
+
     /* Dark Mode */
     --primary-dark-bg: #1e2430;
-
-    /* Base setup */
-    min-height: 100dvh;
-    background: var(--primary-bg);
+    --secondary-dark-bg: #2d3748;
+    --nav-dark-bg: #111827;
+    --btn-dark-bg: #2d3748;
+    --text-dark-color: #cdcdcf;
+    --input-dark-border: #4a5568;
+    --placeholder-dark-color: #a0aec0;
 }
-
-/* In tailwind v4. Hover variant only apply when the primary input device supports hover"
-*  Touch displays computer broke hoover effect.
-*  Apply custom variant to make hover work on all devices */
-@custom-variant hover (&:hover);
 
 /* Reset */
 html,
 body {
     margin: 0;
     padding: 0;
-    min-height: 100vh;
-    min-height: 100dvh;
     background: var(--primary-bg);
     color: var(--text-color);
-    box-sizing: border-box;
-    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* Dark mode variabel-override */
 .dark-mode {
-    /* Light scheme ax default */
-    color-scheme: dark;
-
-    /* Colors */
-    --primary-bg: #1e2430;
-    --secondary-bg: #2d3748;
-    --code-bg: #1a202c;
-
-    /* Navbar specifik */
-    --nav-bg: #111827;
-    --Btn-bg: #2d3748;
-
-    /* Text och border färger */
-    --text-color: #cdcdcf;
-    --input-border-color: #4a5568;
-    --placeholder-color: #a0aec0;
+    --primary-bg: var(--primary-dark-bg);
+    --secondary-bg: var(--secondary-dark-bg);
+    --nav-bg: var(--nav-dark-bg);
+    --btn-bg: var(--btn-dark-bg);
+    --text-color: var(--text-dark-color);
+    --input-border: var(--input-dark-border);
+    --placeholder-color: var(--placeholder-dark-color);
 }
 
 /* Typography Styles */
@@ -80,31 +66,25 @@ h2 {
 }
 
 /* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-    width: 12px;
+::-webkit-scrollbar {
+    width: 10px;
 }
 
-*::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background: var(--primary-bg);
-    border-radius: 10px;
 }
 
-*::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: var(--nav-bg);
     border-radius: 10px;
-    border: 3px solid var(--primary-bg);
-    transition: all 0.3s ease;
 }
 
-*::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-bg);
+::-webkit-scrollbar-thumb:hover {
+    background: var(--btn-bg);
 }
 
-/* For dark mode adaptation */
-.dark-mode *::-webkit-scrollbar-track {
-    background: var(--secondary-bg);
-}
+/* In tailwind v4. Hover variant only apply when the primary input device supports hover"
+*  Touch displays computer broke hoover effect.
+*  Apply custom variant to make hover work on all devices */
 
-.dark-mode *::-webkit-scrollbar-thumb {
-    border-color: var(--secondary-bg);
-}
+@custom-variant hover (&:hover);

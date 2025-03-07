@@ -1,93 +1,122 @@
 import { useState, useEffect } from "react";
-import { Loader, Github, Link, Circle } from "lucide-react";
+import { Loader, Github, Link } from "lucide-react";
+import { SectionHeading } from "../../components/ui/SectionHeading";
 
 const Portfolio = () => {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const fetchProjects = async () => {
+    try {
+      // Show loading state while fetching
+      setIsLoading(true);
 
-  //  fetch data from Github public API with cache and rate limits
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        setIsLoading(true);
+      // Fetches GitHub repositories with caching to avoid overload API
+      const cachedData = localStorage.getItem("githubProjects");
+      const cacheTime = localStorage.getItem("githubProjectsTime");
+      const oneHourInMs = 60 * 60 * 1000;
+      const now = Date.now();
 
-        const cachedData = localStorage.getItem("githubProjects");
-        const cacheTime = localStorage.getItem("githubProjectsTime");
-        const oneHourInMs = 60 * 60 * 1000; // 1 hour
-        const now = Date.now();
+      // If we have cache that isn't expired, use it
+      if (cachedData && cacheTime) {
+        const cacheAge = now - Number(cacheTime);
 
-        // Use cache if available and less than 1 hour old
-        if (cachedData && cacheTime && now - Number(cacheTime) < oneHourInMs) {
-          console.log("Using cached GitHub data");
+        if (cacheAge < oneHourInMs) {
+          // Parse JSON data
           const parsedData = JSON.parse(cachedData);
-          prepareProjectsForDisplay(parsedData);
+
+          // Process the data with our helper functions
+          const filteredProjects = filterProjectsByName(parsedData);
+          const projectsWithDetails = addDetailsToProjects(filteredProjects);
+
+          // Update the state with our processed projects
+          setProjects(projectsWithDetails);
+          setIsLoading(false); // return if we have cached data
           return;
         }
-
-        // Fetch fresh data if cache is missing or expired
-        const response = await fetch(
-          "https://api.github.com/users/jbrannelid/repos"
-        );
-
-        if (!response.ok) {
-          throw new Error("Could not fetch projects from GitHub");
-        }
-
-        const data = await response.json();
-
-        // Save to cache with timestamp
-        localStorage.setItem("githubProjects", JSON.stringify(data));
-        localStorage.setItem("githubProjectsTime", String(now));
-
-        prepareProjectsForDisplay(data);
-      } catch (error) {
-        setError("Failed to load projects. Please try again later.");
-        console.error("Error loading projects:", error);
-      } finally {
-        setIsLoading(false);
       }
-    };
 
-    // Helper function to prepare projects data
-    const prepareProjectsForDisplay = (data) => {
-      // Filter to only show specific projects
-      const filteredProjects = data.filter((repo) =>
-        ["TWCounters", "SchoolSystem", "ChessBoard"].includes(repo.name)
+      // Fetch fresh data
+      const response = await fetch(
+        "https://api.github.com/users/jbrannelid/repos"
       );
 
-      // Add additional information to each project
-      const projectsWithDetails = filteredProjects.map((repo) => ({
-        ...repo,
-        category: getProjectCategory(repo.name),
-        colorTheme: getColorTheme(repo.name),
-      }));
+      // Check if the request was successful
+      if (!response.ok) {
+        throw new Error("Could not fetch projects from GitHub");
+      }
 
+      // Parse the JSON response
+      const data = await response.json();
+
+      // Save the fresh data to cache along with the current timestamp
+      localStorage.setItem("githubProjects", JSON.stringify(data));
+      localStorage.setItem("githubProjectsTime", String(now));
+
+      // Process the data with our helper functions
+      const filteredProjects = filterProjectsByName(data);
+      const projectsWithDetails = addDetailsToProjects(filteredProjects);
+
+      // Update the state with our processed projects
       setProjects(projectsWithDetails);
+    } catch (error) {
+      setError("Failed to load projects. Please try again later.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const filterProjectsByName = (repositories) => {
+    // Filtered repositories name I want to showcast
+    const projectsToShow = [
+      "TWCounters",
+      "SchoolSystem",
+      "ChessBoard",
+      "REST_API_ResumeHandler",
+    ];
+
+    return repositories.filter((repo) => projectsToShow.includes(repo.name));
+  };
+
+  // Adds category and color theme information to each project
+  const addDetailsToProjects = (filteredProjects) => {
+    return filteredProjects.map((repo) => ({
+      ...repo, // Keep all original properties
+      category: determineProjectCategory(repo.name),
+      colorTheme: assignColorTheme(repo.name),
+    }));
+  };
+
+  const determineProjectCategory = (projectName) => {
+    const categories = {
+      REST_API_ResumeHandler: "Backend System",
+      TWCounters: "Web Application",
+      SchoolSystem: "Backend System",
+      ChessBoard: "",
     };
 
+    return categories[projectName] || "Other";
+  };
+
+  const assignColorTheme = (projectName) => {
+    // Define color themes for known projects
+    const themes = {
+      REST_API_ResumeHandler: "",
+      TWCounters: "from-blue-500/40 to-purple-500/40",
+      SchoolSystem: "from-green-500/40 to-teal-500/40",
+      ChessBoard: "from-orange-500/40 to-red-500/40",
+    };
+
+    // Return the matching theme or a default gray theme if no match
+    return themes[projectName] || "from-gray-500/20 to-slate-500/40";
+  };
+
+  // Fetch projects when component mounts
+  useEffect(() => {
     fetchProjects();
   }, []);
 
-  // Helper function to determine project category
-  const getProjectCategory = (name) => {
-    const categories = {
-      TWCounters: "Web Application",
-      SchoolSystem: "Backend System",
-    };
-    return categories[name] || "Other";
-  };
-
-  // Helper function to assign color theme
-  const getColorTheme = (name) => {
-    const themes = {
-      TWCounters: "from-blue-500/30 to-purple-500/40",
-      SchoolSystem: "from-green-500/30 to-teal-500/40",
-      ChessBoard: "from-orange-500/30 to-red-500/40",
-    };
-    return themes[name] || "from-gray-500/20 to-slate-500/40";
-  };
-
+  // Loading state display
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -96,39 +125,20 @@ const Portfolio = () => {
     );
   }
 
-  if (error) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen gap-4">
-        <div className="text-red-500 text-center max-w-md p-4 bg-red-500/10 rounded-lg">
-          <p>{error}</p>
-          <button
-            onClick={() => window.location.reload()}
-            className="mt-4 px-4 py-2 bg-[var(--accent-orange-color)] rounded-lg hover:bg-[var(--accent1-orange-color)] transition-colors"
-          >
-            Try Again
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <main className="container mx-auto px-4">
-      <header className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Featured Projects</h1>
-        <p className="mx-auto max-w-2xl text-lg opacity-90">
-          Explore my selected projects from GitHub, each representing key
-          milestones in my development journey
-        </p>
-      </header>
-
+      <SectionHeading
+        title="Featured Projects"
+        subtitle="Explore my selected projects from GitHub, each representing key
+          milestones in my development journey"
+      />
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
           <article
             key={project.id}
             className={`group relative overflow-hidden rounded-xl bg-gradient-to-r ${project.colorTheme} 
-    p-6 transform transition-all duration-300 hover:scale-[1.03] flex flex-col
-    border border-white/10 backdrop-blur-sm hover:border-[var(--accent-orange-color)]/50`}
+    p-6 transform transition-all duration-300 hover:scale-[1.01] flex flex-col
+    border border-white/10 backdrop-blur-sm `}
           >
             <div className="mb-4">
               {/* Project name */}
@@ -136,7 +146,7 @@ const Portfolio = () => {
                 <span className="text-sm px-3 py-1 rounded-full bg-white/10">
                   {project.category}
                 </span>
-                <span className="text-sm opacity-60">
+                <span className="text-sm opacity-80">
                   {new Date(project.created_at).toLocaleDateString()}
                 </span>
               </div>
@@ -155,7 +165,7 @@ const Portfolio = () => {
                 <span className="text-sm">{project.language}</span>
               </div>
 
-              {/* herf link to GitHub*/}
+              {/* href link to GitHub*/}
               <div className="flex items-center gap-4">
                 <a
                   href={project.html_url}
@@ -168,7 +178,7 @@ const Portfolio = () => {
                   <span>Code</span>
                 </a>
 
-                {/* herf link to Homepage if available */}
+                {/* href link to Homepage if available */}
                 {project.homepage && (
                   <a
                     href={project.homepage}

@@ -1,15 +1,20 @@
-import { Instagram, Linkedin, Github, Sun, Moon } from "lucide-react";
-import { useTheme } from "../../context/AppContext";
+import { useTheme } from "../../context/ThemeContext";
+// Icon imports
+import Instagram from "lucide-react/dist/esm/icons/instagram";
+import Linkedin from "lucide-react/dist/esm/icons/linkedin";
+import Github from "lucide-react/dist/esm/icons/github";
+import Sun from "lucide-react/dist/esm/icons/sun";
+import Moon from "lucide-react/dist/esm/icons/moon";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <footer className="bg-[var(--nav-bg)] min-h-[20vh] border-t border-white/60">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-[25%_1fr_30%] gap-4 p-8">
+    <footer className="bg-[var(--nav-bg)] min-h-1/5 border-t border-white/80">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-[30%_1fr_30%] gap-4 p-8">
         {/* Social Media Section */}
-        <section className="md:border-r border-white/60 py-4">
+        <section className="md:border-r border-white/80 py-4">
           <h3 className="text-lg font-semibold mb-4">Social Media</h3>
           <div className="flex gap-4">
             <a

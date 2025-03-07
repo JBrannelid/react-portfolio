@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Layout from "./components/Layout";
-import { AppProvider } from "./context/AppContext";
+import { ThemeProvider } from "./context/ThemeContext";
+import { NavigationProvider } from "./context/NavigationContext";
 
 // Lazy load 404 page
 const NotFound = lazy(() => import("./components/NotFound"));
@@ -16,16 +17,18 @@ const LoadingSpinner = () => (
 function App() {
   return (
     <BrowserRouter>
-      <AppProvider>
-        <div className="app-root min-h-screen bg-[var(--primary-bg)] transition-colors duration-300">
+      <ThemeProvider>
+        <NavigationProvider>
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
+              {/* Main route for all portfolio sections */}
               <Route path="/*" element={<Layout />} />
+              {/* Catch-all route for 404 errors */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
-        </div>
-      </AppProvider>
+        </NavigationProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

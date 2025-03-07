@@ -1,14 +1,14 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import compression from "vite-plugin-compression";
-import tailwindcss from "@tailwindcss/vite"; // Se till att detta importeras korrekt
+import tailwindcss from "@tailwindcss/vite";
 
 // Build project by code-split the application
 export default defineConfig({
   base: "/",
   plugins: [
     react(),
-    tailwindcss(), // Lägg till Tailwind-plugin
+    tailwindcss(),
     compression({
       algorithm: "gzip",
       ext: ".gz",
@@ -34,15 +34,10 @@ export default defineConfig({
         manualChunks: {
           // Core React dependencies
           "react-core": ["react", "react-dom"],
-
           // Routing
           routing: ["react-router-dom"],
-
-          // Split FontAwesome (large dependency) into its own chunk
-          "fontawesome-core": ["@fortawesome/fontawesome-svg-core"],
-          "fontawesome-solid": ["@fortawesome/free-solid-svg-icons"],
-          "fontawesome-brands": ["@fortawesome/free-brands-svg-icons"],
-          "fontawesome-react": ["@fortawesome/react-fontawesome"],
+          // Icons
+          "lucide-icons": ["lucide-react"],
         },
         assetFileNames: (assetInfo) => {
           if (
@@ -55,7 +50,15 @@ export default defineConfig({
         },
       },
     },
-    // Warning limit
+    cssCodeSplit: true,
+    reportCompressedSize: false,
     chunkSizeWarningLimit: 800,
+    minify: "terser",
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
   },
 });

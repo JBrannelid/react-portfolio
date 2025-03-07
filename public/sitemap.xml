@@ -3,7 +3,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://jbrannelid.com/</loc>
-    <lastmod>2025-02-19</lastmod>
+    <lastmod>2025-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,7 +11,7 @@
   <!-- About page -->
   <url>
     <loc>https://jbrannelid.com/about</loc>
-    <lastmod>2025-02-19</lastmod>
+    <lastmod>2025-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -19,7 +19,7 @@
   <!-- Skills page -->
   <url>
     <loc>https://jbrannelid.com/skills</loc>
-    <lastmod>2025-02-19</lastmod>
+    <lastmod>2025-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -27,7 +27,7 @@
   <!-- Portfolio page -->
   <url>
     <loc>https://jbrannelid.com/portfolio</loc>
-    <lastmod>2025-02-19</lastmod>
+    <lastmod>2025-03-7</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -35,7 +35,7 @@
   <!-- Experience page -->
   <url>
     <loc>https://jbrannelid.com/experience</loc>
-    <lastmod>2025-02-19</lastmod>
+    <lastmod>2025-03-7</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -43,7 +43,7 @@
   <!-- Contact page -->
   <url>
     <loc>https://jbrannelid.com/contact</loc>
-    <lastmod>2025-02-19</lastmod>
+    <lastmod>2025-03-7</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

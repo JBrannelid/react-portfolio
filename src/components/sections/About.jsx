@@ -1,8 +1,9 @@
 import React from "react";
 import { getAssetPath } from "../../utils/assetUtils";
+import { SectionHeading } from "../../components/ui/SectionHeading";
 
 const About = () => {
-  // Array of static image with belongings description. Display-order for media screen
+  // Array of static image with belongings description
   const polaroidImages = [
     {
       src: getAssetPath("assets/portrait/Elina.webp"),
@@ -39,7 +40,7 @@ const About = () => {
     {
       src: getAssetPath("assets/portrait/Johannes.webp"),
       sizes: "(max-width: 768px) 100vw, 400px",
-      caption: "Leg.Radiographer",
+      caption: "Radiographer",
       alt: "Radiographer profile picture",
       order: "lg:order-5 order-5",
       width: 400,
@@ -65,7 +66,7 @@ const About = () => {
     },
   ];
 
-  // Array of rotations with index as para
+  // Array of rotations with index as parameter
   const getRotation = (index) => {
     const rotations = [
       "lg:hover:rotate-0 lg:rotate-[8deg]",
@@ -81,17 +82,11 @@ const About = () => {
 
   return (
     <main className="container mx-auto px-4">
-      {/* Centered Header Section */}
-      <header className="text-center mb-16 max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold mb-4">About Me</h1>
-        <h2 className="text-xl font-semibold text-[var(--accent-orange-color)]">
-          Student
-          <span className="text-white text-sm ml-2 block md:inline">
-            Fullstack .NET at Chas Academy - Stockholm, Sweden
-          </span>
-        </h2>
-      </header>
-
+      <SectionHeading
+        title="About Me"
+        subtitle="Student Fullstack .NET at Chas Academy - Stockholm, Sweden"
+        highlightedText="Student"
+      />
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Biography Section */}
         <section className="lg:w-2/5 space-y-6">
@@ -162,10 +157,10 @@ const About = () => {
                 <figure
                   key={index} // uniq element id for React
                   className={`relative bg-[var(--secondary-bg)] rounded-lg p-2 md:p-3 shadow-lg
-                    transition-all duration-300 ease-in-out hover:scale-105 hover:z-10 max-w-[15rem]
+                    transition duration-300 hover:scale-105 hover:z-10 
                     ${getRotation(index)} ${image.order}`} // set image rotation and image order for media display
                 >
-                  <div className="aspect-square rounded-lg bg-[var(--input-border-color)] overflow-hidden max-w-[15rem]">
+                  <div className="aspect-square rounded-lg bg-[var(--input-border-color)] overflow-hidden">
                     <img
                       src={image.src}
                       sizes={image.sizes}

@@ -1,80 +1,101 @@
 import React, { useState } from "react";
-import { Mail } from "lucide-react";
 import { getAssetPath } from "../../utils/assetUtils";
+// Icon imports
+import Mail from "lucide-react/dist/esm/icons/mail";
 
 export default function Contact() {
+  // Form state with status and empty string
   const [formState, setFormState] = useState({
+    status: "idle", // Possible values: 'idle', 'sending', 'success', 'error'
     message: "",
-    isSuccess: null,
   });
 
-  const onSubmit = async (event) => {
+  // Handle form submission with async/await pattern
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setFormState({ message: "Sending message...", isSuccess: null });
+
+    // Show sending state immediately
+    setFormState({
+      status: "sending",
+      message: "Sending message...",
+    });
+
     const formData = new FormData(event.target);
 
-    // public key (not API Key)
+    // Access key (Not API-Key)
     formData.append("access_key", "37935aa7-15e9-4a89-999f-69191d8b614c");
 
-    // try contact web3forms and catch any errors
     try {
-      // Get a promises from web3forms and ask får POST and formData
+      // Send data to web3forms in a POST method
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData,
       });
 
-      // Convert respons into Json
       const data = await response.json();
 
-      // Handle data respons with uniq message
       if (data.success) {
         setFormState({
+          status: "success",
           message:
-            "Thank you for your message! I will get back to you as soon as possible.",
-
-          isSuccess: true,
+            "Thank you for your message! I will get back to you as soon as possible",
         });
-        event.target.reset();
+        event.target.reset(); // Clear the form
       } else {
-        console.log("Error", data);
+        // API access error
         setFormState({
+          status: "error",
           message:
-            "Something went wrong while sending the message. Please contact me via email or social media links shown below.",
-
-          isSuccess: false,
+            "Something went wrong. Please contact me via email or social media links shown below",
         });
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      // Catch all error
       setFormState({
+        status: "error",
         message:
-          "A technical error occurred. You can reach me directly at J.Brannelid@icloud.com or through social media.",
-
-        isSuccess: false,
+          "A technical error occurred. You can reach me through email or social media.",
       });
     }
+  };
+
+  // CSS classes for input fields - extracted for readability
+  const inputClasses = `
+    w-full p-3 mt-2 
+    bg-[var(--secondary-bg)]
+    border-2 border-[var(--accent-orange-color)] 
+    rounded-lg
+    transition-all duration-200
+    hover:border-[var(--accent1-orange-color)]
+    focus:border-[var(--accent1-orange-color)] 
+    focus:outline-none focus:ring-1
+  `;
+
+  // Get status-based styling for the form feedback message
+  const getStatusStyle = () => {
+    const styles = {
+      sending: "bg-gray-100/80 text-gray-800",
+      success: "bg-green-100/80 text-green-600",
+      error: "bg-red-100/80 text-red-600",
+    };
+    return styles[formState.status] || "";
   };
 
   return (
     <section className="min-h-screen">
       <div className="container px-6 mx-auto">
         <div className="lg:flex lg:items-center">
+          {/* Form Section */}
           <div className="lg:w-1/2 lg:mx-10">
-            <h1 className="text-2xl font-semibold capitalize lg:text-3xl">
-              Let's talk
-            </h1>
+            <h1 className="text-2xl font-semibold lg:text-3xl">Let's talk</h1>
 
             <p className="mt-4 opacity-90">
               I'd be happy to hear from you! Feel free to reach out via email,
-              contact form or provided social media links below
+              contact form or provided social media links below.
             </p>
-
-            <div className="mt-6 space-y-8 md:mt-8"></div>
-
-            <form className="mt-12" onSubmit={onSubmit}>
-              <div className="-mx-2 md:items-center md:flex">
-                <div className="flex-1 px-2">
+            <form className="mt-12" onSubmit={handleSubmit}>
+              <div className="md:flex gap-4">
+                <div className="flex-1 mb-4 md:mb-0">
                   <label className="block mb-2 text-sm" htmlFor="fullName">
                     Full Name
                   </label>
@@ -84,27 +105,11 @@ export default function Contact() {
                     name="name"
                     placeholder="Name"
                     required
-                    aria-required="true"
-                    className="block w-full px-5 py-3 mt-2 
-                    bg-[var(--secondary-bg)]
-                    text-[var(--placeholder-color)]
-                    placeholder-[var(--input-border-color)]
-                    border-2
-                    border-[var(--accent-orange-color)]
-                    rounded-lg
-                    transition-all
-                    duration-200
-                    ease-in-out
-                    hover:border-[var(--accent1-orange-color)]
-                    focus:border-[var(--accent1-orange-color)]
-                    focus:ring-1
-                    focus:ring-[var(--accent1-orange-color)]
-                    focus:outline-none
-                    focus:shadow-md"
+                    className={inputClasses}
                   />
                 </div>
 
-                <div className="flex-1 px-2 mt-4 md:mt-0">
+                <div className="flex-1">
                   <label className="block mb-2 text-sm" htmlFor="email">
                     Email address
                   </label>
@@ -114,98 +119,64 @@ export default function Contact() {
                     name="email"
                     placeholder="email@example.com"
                     required
-                    aria-required="true"
-                    className="block w-full px-5 py-3 mt-2 
-                    bg-[var(--secondary-bg)]
-                    text-[var(--placeholder-color)]
-                    placeholder-[var(--input-border-color)]
-                    border-2
-                    border-[var(--accent-orange-color)]
-                    rounded-lg
-                    transition-all
-                    duration-200
-                    ease-in-out
-                    hover:border-[var(--accent1-orange-color)]
-                    focus:border-[var(--accent1-orange-color)]
-                    focus:ring-1
-                    focus:ring-[var(--accent1-orange-color)]
-                    focus:outline-none
-                    focus:shadow-md"
+                    className={inputClasses}
                   />
                 </div>
               </div>
 
-              <div className="w-full mt-4">
+              {/* Message textarea */}
+              <div className="mt-4">
                 <label className="block mb-2 text-sm" htmlFor="message">
                   Write your message
                 </label>
                 <textarea
-                  className="block w-full h-32 px-5 py-3 mt-2                     
-                  bg-[var(--secondary-bg)]
-                  text-[var(--placeholder-color)]
-                  placeholder-[var(--input-border-color)]
-                  border-2
-                  border-[var(--accent-orange-color)]
-                  rounded-lg
-                  transition-all
-                  duration-200
-                  ease-in-out
-                  hover:border-[var(--accent1-orange-color)]
-                  focus:border-[var(--accent1-orange-color)]
-                  focus:ring-1
-                  focus:ring-[var(--accent1-orange-color)]
-                  focus:outline-none
-                  focus:shadow-md"
+                  className={`${inputClasses} h-32`}
                   id="message"
                   name="message"
-                  placeholder="Message...."
+                  placeholder="Message..."
                   required
-                  aria-required="true"
                 />
               </div>
 
+              {/* Submit button */}
               <button
                 type="submit"
-                className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] w-full mt-4 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
+                className="w-full h-12 mt-4 rounded-full 
+                          bg-gradient-to-r from-red-400/90 to-amber-600/90 
+                          border-2 border-transparent
+                          transition-all duration-200
+                          hover:border-[var(--accent1-orange-color)]
+                          focus:ring-1 focus:outline-none"
               >
-                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ec8b2a_0%,#ffd621_50%,#ec8b2a_100%)]" />
-                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-red-400/60 to-amber-600/60 text-sm backdrop-blur-3xl transition-all duration-300 hover:bg-amber-600">
-                  Get in touch
-                </span>
+                Get in touch
               </button>
             </form>
-            {/* Show a div with message base och sucess submit or not with css text styling */}
+
+            {/* Form status message */}
             {formState.message && (
               <div
-                className={`mt-4 p-4 rounded-lg ${
-                  formState.isSuccess === null
-                    ? // when state is null (response time) display information that we are working on the sumbit
-                      "bg-gray-100/80 text-gray-800"
-                    : formState.isSuccess
-                      ? "bg-green-100/80 text-green-600"
-                      : "bg-red-100/80 text-red-600"
-                  // smooth animation for displaying message
-                } text-center transition-all duration-300`}
+                className={`mt-4 p-4 rounded-lg text-center transition-all duration-300 ${getStatusStyle()}`}
               >
-                {/* print message base on formState */}
                 <p>{formState.message}</p>
               </div>
             )}
           </div>
 
-          <div className="lg:flex lg:mt-0 lg:flex-col lg:items-center lg:w-1/2 lg:mx-10">
+          {/* Image only shown on larger screens */}
+          <div className="lg:w-1/2 lg:mx-10 hidden lg:flex lg:justify-center">
             <img
-              className="mt-20 hidden object-cover mx-auto rounded-full lg:block shrink-0 w-80 h-80"
+              className="mt-8 rounded-full w-80 h-80 object-cover"
               src={getAssetPath("assets/portrait/IMG_2402.webp")}
               alt="Contact illustration"
               width="320"
               height="320"
-              loading="lazy" // Lazy loading for better performance as Contact is the last section
+              loading="lazy"
             />
           </div>
         </div>
-        {/* Contact Email with href link */}
-        <div className="flex justify-end items-center mt-12 mb-6">
+
+        {/* Contact Email with link */}
+        <div className="flex justify-end mt-12 mb-6">
           <div className="flex items-center gap-3 bg-white/10 px-6 py-3 rounded-full">
             <Mail className="text-[var(--accent-orange-color)]" />
             <a

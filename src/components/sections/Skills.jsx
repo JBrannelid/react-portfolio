@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { Monitor, Server, GitBranch, ChevronRight, Circle } from "lucide-react";
+// Icon imports
+import Monitor from "lucide-react/dist/esm/icons/monitor";
+import Server from "lucide-react/dist/esm/icons/server";
+import GitBranch from "lucide-react/dist/esm/icons/git-branch";
+import ChevronRight from "lucide-react/dist/esm/icons/chevron-right";
+import Circle from "lucide-react/dist/esm/icons/circle";
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState(null);

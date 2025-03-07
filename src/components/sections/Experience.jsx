@@ -1,29 +1,48 @@
 import React, { useState } from "react";
 import myExperienceData from "../../assets/myExperience.json";
-import {
-  ChevronUp,
-  ChevronDown,
-  Briefcase,
-  GraduationCap,
-  Award,
-  Medal,
-} from "lucide-react";
+import { SectionHeading } from "../../components/ui/SectionHeading";
+// Icon imports
+import ChevronUp from "lucide-react/dist/esm/icons/chevron-up";
+import ChevronDown from "lucide-react/dist/esm/icons/chevron-down";
+import Briefcase from "lucide-react/dist/esm/icons/briefcase";
+import GraduationCap from "lucide-react/dist/esm/icons/graduation-cap";
+import Award from "lucide-react/dist/esm/icons/award";
+import Medal from "lucide-react/dist/esm/icons/medal";
 
 const Experience = () => {
+  // Get experience data from imported JSON
   const { experience, education, additionalEducation, certifications } =
     myExperienceData;
+
+  // State to track which tab is currently active (experience, education, etc.)
   const [activeTab, setActiveTab] = useState("experience");
+
+  // State to track which sections are expanded
   const [expandedSections, setExpandedSections] = useState({});
 
-  // Toggle section expansion
+  // Function to toggle whether a section is expanded or collapsed
   const toggleSection = (sectionId) => {
-    setExpandedSections((prev) => ({
-      ...prev,
-      [sectionId]: !prev[sectionId],
-    }));
+    const newExpandedSections = { ...expandedSections };
+    // If section is currently expanded, set to false; otherwise set to true
+    newExpandedSections[sectionId] = !expandedSections[sectionId];
+    setExpandedSections(newExpandedSections);
   };
 
-  // Timeline Entry Component
+  // Display the content for each job, education, or certification entry
+  const TimelineContent = ({ company, location, details, skills }) => (
+    <div className="pt-4">
+      <p className="text-sm text-[var(--accent1-orange-color)] mb-2">
+        {company}, {location}
+      </p>
+      <p className="text-sm opacity-80 mb-4">{details}</p>
+      <div className="flex flex-wrap">
+        {skills &&
+          skills.map((skill, idx) => <SkillTag key={idx} skill={skill} />)}
+      </div>
+    </div>
+  );
+
+  // Timeline Entry Component - a reusable expandable section
   const TimelineEntry = ({
     title,
     period,
@@ -53,6 +72,8 @@ const Experience = () => {
               <button
                 className="p-1 hover:bg-white/10 rounded-full transition-colors"
                 onClick={() => onToggle(id)}
+                aria-label={isExpanded ? "Collapse section" : "Expand section"}
+                aria-expanded={isExpanded}
               >
                 {isExpanded ? (
                   <ChevronUp className="w-4 h-4" />
@@ -64,6 +85,7 @@ const Experience = () => {
           </div>
         </div>
 
+        {/* Content that shows/hides when expanded/collapsed */}
         <div
           className={`transition-all duration-300 overflow-hidden ease-in-out ${
             alwaysExpanded || isExpanded
@@ -77,7 +99,7 @@ const Experience = () => {
     </div>
   );
 
-  // Tab Button Component
+  // Tab Button Component - for switching between tabs
   const TabButton = ({ active, icon, label, onClick }) => (
     <button
       onClick={onClick}
@@ -89,7 +111,7 @@ const Experience = () => {
     </button>
   );
 
-  // Skill Tag Component
+  // Skill Tag Component - for displaying skill badges
   const SkillTag = ({ skill }) => (
     <span
       className="inline-block px-3 py-1 text-xs text-[var(--accent1-orange-color)] 
@@ -101,11 +123,9 @@ const Experience = () => {
 
   return (
     <main className="container mx-auto px-4 max-w-4xl">
-      <h1 className="text-4xl font-bold text-center mb-12">
-        Professional Journey
-      </h1>
+      <SectionHeading title="Professional Journey" />
 
-      {/* Tab Navigation */}
+      {/* Tab Navigation - buttons to switch between experience types */}
       <div className="flex flex-wrap gap-4 justify-center mb-12">
         <TabButton
           active={activeTab === "experience"}
@@ -133,7 +153,7 @@ const Experience = () => {
         />
       </div>
 
-      {/* Content Sections */}
+      {/* Content Sections - different sections that show based on active tab */}
       <div className="space-y-6">
         {/* Work Experience Section */}
         {activeTab === "experience" && (
@@ -146,23 +166,15 @@ const Experience = () => {
               isExpanded={expandedSections.current}
               onToggle={toggleSection}
             >
-              <div className="pt-4">
-                <p className="text-sm text-[var(--accent1-orange-color)] mb-2">
-                  {experience.currentRole.company},{" "}
-                  {experience.currentRole.location}
-                </p>
-                <p className="text-sm opacity-80 mb-4">
-                  {experience.currentRole.details}
-                </p>
-                <div className="flex flex-wrap">
-                  {experience.currentRole.skills?.map((skill, idx) => (
-                    <SkillTag key={idx} skill={skill} />
-                  ))}
-                </div>
-              </div>
+              <TimelineContent
+                company={experience.currentRole.company}
+                location={experience.currentRole.location}
+                details={experience.currentRole.details}
+                skills={experience.currentRole.skills}
+              />
             </TimelineEntry>
 
-            {/* previousRole */}
+            {/* Previous role */}
             <TimelineEntry
               title={experience.previousRole.title}
               period={experience.previousRole.period}
@@ -170,23 +182,15 @@ const Experience = () => {
               isExpanded={expandedSections.previous}
               onToggle={toggleSection}
             >
-              <div className="pt-4">
-                <p className="text-sm text-[var(--accent1-orange-color)] mb-2">
-                  {experience.previousRole.company},{" "}
-                  {experience.previousRole.location}
-                </p>
-                <p className="text-sm opacity-80 mb-4">
-                  {experience.previousRole.details}
-                </p>
-                <div className="flex flex-wrap">
-                  {experience.previousRole.skills?.map((skill, idx) => (
-                    <SkillTag key={idx} skill={skill} />
-                  ))}
-                </div>
-              </div>
+              <TimelineContent
+                company={experience.previousRole.company}
+                location={experience.previousRole.location}
+                details={experience.previousRole.details}
+                skills={experience.previousRole.skills}
+              />
             </TimelineEntry>
 
-            {/* professionalHistory */}
+            {/* Professional history - maps through all past roles */}
             {experience.professionalHistory.map((role, index) => (
               <TimelineEntry
                 key={index}
@@ -196,17 +200,12 @@ const Experience = () => {
                 isExpanded={expandedSections[`history-${index}`]}
                 onToggle={toggleSection}
               >
-                <div className="pt-4">
-                  <p className="text-sm text-[var(--accent1-orange-color)] mb-2">
-                    {role.company}, {role.location}
-                  </p>
-                  <p className="text-sm opacity-80 mb-4">{role.details}</p>
-                  <div className="flex flex-wrap">
-                    {role.skills?.map((skill, idx) => (
-                      <SkillTag key={idx} skill={skill} />
-                    ))}
-                  </div>
-                </div>
+                <TimelineContent
+                  company={role.company}
+                  location={role.location}
+                  details={role.details}
+                  skills={role.skills}
+                />
               </TimelineEntry>
             ))}
           </div>
@@ -307,7 +306,7 @@ const Experience = () => {
                 id={`certification-${index}`}
                 isExpanded={true}
                 onToggle={() => {}}
-                alwaysExpanded={true} // Always be expanded = true
+                alwaysExpanded={true} // These are always expanded
               >
                 <div className="pt-4">
                   <p className="text-sm text-[var(--accent1-orange-color)] mb-2">

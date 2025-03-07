@@ -1,73 +1,62 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import { useActiveSection } from "../context/AppContext";
+import { useActiveSection } from "../context/NavigationContext";
+// Icon imports
+import Menu from "lucide-react/dist/esm/icons/menu";
+import X from "lucide-react/dist/esm/icons/x";
 
 const Navbar = () => {
   // State variables
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [scrollDirection, setScrollDirection] = useState("up");
+  const [isHidden, setIsHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const { activeSection } = useActiveSection();
 
   // Navigation links configuration
   const links = [
-    { path: "/", name: "Home" },
-    { path: "/about", name: "About Me" },
-    { path: "/skills", name: "Skills" },
-    { path: "/portfolio", name: "Portfolio" },
-    { path: "/experience", name: "Experience" },
-    { path: "/contact", name: "Contact" },
+    { sectionPath: "/", sectionName: "Home" },
+    { sectionPath: "/about", sectionName: "About Me" },
+    { sectionPath: "/skills", sectionName: "Skills" },
+    { sectionPath: "/portfolio", sectionName: "Portfolio" },
+    { sectionPath: "/experience", sectionName: "Experience" },
+    { sectionPath: "/contact", sectionName: "Contact" },
   ];
 
   // Toggle mobile menu open/closed
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  // Detects when users scroll down to hide the navbar
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrollDirection(currentScrollY > lastScrollY ? "down" : "up");
-      setIsScrolled(currentScrollY > 20);
+      const currentScrollY = window.scrollY; // Detect scroll in vertical (Y)
+      setIsHidden(currentScrollY > 20 && currentScrollY > lastScrollY); // Hide navbar when scrolling down and beyond 20px
       setLastScrollY(currentScrollY);
     };
 
+    // Add scroll listener when the component is loading
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]); // Re-run effect when lastScrollY changes
 
   // Determines which navigation link should be highlighted as active
-  const isActive = (path) => {
-    const sectionName = path === "/" ? "home" : path.slice(1);
+  const isActive = (sectionPath) => {
+    const sectionName = sectionPath === "/" ? "home" : sectionPath.slice(1);
     return activeSection === sectionName;
   };
 
-  // CSS classes
-  const navbarClasses = `fixed left-1/2 z-20 mt-7 sm:mt-2 flex w-full max-w-[1300px] -translate-x-1/2 gap-4 px-4
-    transition-transform duration-300 ease-in-out
-    ${scrollDirection === "down" && isScrolled ? "-translate-y-24" : "translate-y-0"}`;
-
-  const menuButtonClasses =
-    "relative inline-flex h-10 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2";
-
-  // Animated border and button styling
-  const animatedBorder =
-    "absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ec8b2a_0%,#ffd621_50%,#ec8b2a_100%)]";
-  const buttonContent =
-    "inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[var(--Btn-bg)] px-3 py-1 text-sm font-medium text-gray-50 backdrop-blur-3xl";
-
-  // Link hover underline animation
-  const linkUnderline =
-    "absolute left-0 bottom-0 bg-[var(--accent-orange-color)] w-0 group-hover:w-full h-[1px] transition-all duration-500 ease-in-out";
-
   return (
-    <nav className={navbarClasses}>
+    <nav
+      // hide navbar when scrolling down
+      className={`fixed left-1/2 z-20 mt-7 sm:mt-2 flex w-full max-w-11/12 -translate-x-1/2 gap-4 px-4
+      transition-transform duration-300 ease-in-out ${isHidden ? "-translate-y-24" : "translate-y-0"}`}
+    >
       {/* Desktop navigation */}
       <div className="relative w-full hidden sm:block">
-        {/* Animated border effect */}
+        {/* Navbar border styling */}
         <div className="absolute inset-0 rounded-full p-[1px] overflow-hidden">
-          <span className={animatedBorder} />
+          <span className="absolute inset-[-1000%] bg-[var(--accent-orange-color)]" />
         </div>
 
         {/* Background and content container */}
@@ -85,19 +74,19 @@ const Navbar = () => {
             {/* Navigation links - desktop */}
             <div className="hidden sm:block">
               <ul className="flex flex-row gap-6 text-center">
-                {links.map(({ path, name }) => (
-                  <li key={path} className="group relative">
+                {links.map(({ sectionPath, sectionName }) => (
+                  <li key={sectionPath} className="group relative">
                     <NavLink
-                      to={path}
-                      className={`block py-0 px-0 transition-colors duration-300 ${
-                        isActive(path)
+                      to={sectionPath}
+                      className={
+                        isActive(sectionPath)
                           ? "text-[var(--accent1-orange-color)]"
-                          : "hover:bg-transparent"
-                      }`}
+                          : ""
+                      }
                     >
                       <span className="relative inline-block text-base">
-                        {name}
-                        <div className={linkUnderline} />
+                        {sectionName}
+                        <div className="absolute left-0 bottom-0 bg-[var(--accent-orange-color)] w-0 group-hover:w-full h-[1px] transition-all duration-500 ease-in-out" />
                       </span>
                     </NavLink>
                   </li>
@@ -115,29 +104,29 @@ const Navbar = () => {
           <h1 className="text-4xl font-bold">JB</h1>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile Link menu */}
         {menuOpen && (
           <ul
             className="flex flex-col gap-6 text-center 
-                     fixed w-[80vw] left-1/2 -translate-x-1/2 top-32
-                     bg-[var(--nav-bg)]/95 backdrop-blur-lg rounded-2xl 
-                     py-8 border border-[var(--accent-orange-color)]
-                     shadow-xl max-h-[80vh] overflow-y-auto"
+                   fixed w-[80vw] left-1/2 -translate-x-1/2 top-32
+                   bg-[var(--nav-bg)] rounded-2xl 
+                   py-8 border border-[var(--accent-orange-color)]
+                   overflow-y-auto"
           >
-            {links.map(({ path, name }) => (
-              <li key={path} className="group relative">
+            {links.map(({ sectionPath, sectionName }) => (
+              <li key={sectionPath} className="group relative">
                 <NavLink
-                  to={path}
+                  to={sectionPath}
                   onClick={toggleMenu}
-                  className={`block py-3 px-4 transition-colors duration-300 ${
-                    isActive(path)
+                  className={
+                    isActive(sectionPath)
                       ? "text-[var(--accent1-orange-color)]"
-                      : "hover:bg-white/10"
-                  }`}
+                      : ""
+                  }
                 >
                   <span className="relative inline-block text-xl">
-                    {name}
-                    <div className={linkUnderline} />
+                    {sectionName}
+                    <div className="absolute left-0 bottom-0 bg-[var(--accent-orange-color)] w-0 group-hover:w-full h-[1px] transition-all duration-500 ease-in-out" />
                   </span>
                 </NavLink>
               </li>
@@ -149,12 +138,12 @@ const Navbar = () => {
         <button
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           onClick={toggleMenu}
-          className={menuButtonClasses}
+          className="relative inline-flex h-10 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
         >
-          <span className={animatedBorder} />
-          <span className={buttonContent}>
+          <span className="absolute inset-[-1000%] bg-[var(--accent-orange-color)]" />
+          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[var(--Btn-bg)] px-3 py-1 text-sm font-medium text-gray-50 backdrop-blur-3xl">
             {menuOpen ? (
-              <X className="h-5 w-5" />
+              <X className="h-4 w-4" />
             ) : (
               <Menu className="h-4 w-4" />
             )}
