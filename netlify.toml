@@ -13,7 +13,6 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Encoding = "br, gzip"
 
 [[headers]]
   for = "/assets/*"
