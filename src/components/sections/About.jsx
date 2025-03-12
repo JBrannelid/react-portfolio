@@ -88,29 +88,25 @@ const About = () => {
         highlightedText="Student"
       />
       <div className="flex flex-col lg:flex-row gap-8">
-        {/* Biography Section */}
         <section className="lg:w-2/5 space-y-6">
+          {/* Biography Section */}
           <article className="bg-white/20 rounded-xl p-6 border border-white/60">
-            <h2 className="text-2xl mb-4 text-[var(--accent1-orange-color)]">
-              Biography
-            </h2>
+            <h3 className="text-2xl mb-4 text-accent1-orange">Biography</h3>
             <div className="space-y-4 text-sm md:text-base">
               <p>
-                I am a dedicated and responsible person with experience in
-                sales, healthcare and leadership. My passion for combining
-                medical technology with dynamic, clinical healthcare led me to
-                pursue a career as a radiology nurse/radiographer.
+                I am a dedicated person with experience in sales, healthcare,
+                and leadership. I am passionate about combining medical
+                technology with clinical healthcare, which led me to pursue a
+                career as a radiology nurse/radiographer.
               </p>
               <p>
-                Since 2017, I have worked in emergency care radiology at
-                Karolinska University Hospital. Taking on various roles in both
-                clinical, leadership and management.
+                Since 2017, I have worked in emergency care radiology. I have
+                taken on various clinical, leadership, and management roles.
               </p>
               <p>
-                However, balancing a demanding healthcare career with personal
-                life hasn't always been easy. I've always had an interest in IT,
-                which inspired me to take a bold step forward and pursue
-                fulltime studies in full-stack software development.
+                Balancing a demanding healthcare career with personal life has
+                been challenging. My interest in IT inspired me to pursue
+                full-time studies in fullstack software development.
               </p>
               <p>
                 With my diverse professional background, a strong desire to
@@ -120,11 +116,9 @@ const About = () => {
               </p>
             </div>
           </article>
-
-          <aside className="bg-[rgba(230,122,13,0.15)] p-4 rounded-xl border-l-[3px] border-l-[var(--accent-orange-color)] border border-white/60">
-            <h2 className="text-xl mb-2 text-[var(--accent1-orange-color)]">
-              Credits
-            </h2>
+          {/* Credits Section */}
+          <article className="bg-[rgba(230,122,13,0.15)] p-4 rounded-xl border-l border-l-accent-orange border border-white/60">
+            <h3 className="text-xl mb-2 text-accent1-orange">Credits</h3>
             <div className="space-y-2 text-sm">
               <p>
                 Date of issue: 2017-05-30
@@ -136,7 +130,7 @@ const About = () => {
               </p>
               <p>* Röntgensjuksköterskeexamen</p>
             </div>
-          </aside>
+          </article>
         </section>
 
         {/* Photo Grid Section */}
@@ -147,20 +141,20 @@ const About = () => {
               image.isText ? (
                 <div
                   key={index}
-                  className={`bg-[var(--primary-bg)] rounded-lg p-4 flex items-center justify-center aspect-square ${image.order}`}
+                  className={`bg-primary rounded-lg p-4 flex items-center justify-center aspect-square ${image.order}`}
                 >
-                  <h3 className="text-xl font-semibold text-[var(--accent1-orange-color)] text-center">
+                  <h3 className="text-xl font-semibold text-accent1-orange text-center">
                     {image.title}
                   </h3>
                 </div>
               ) : (
                 <figure
                   key={index} // uniq element id for React
-                  className={`relative bg-[var(--secondary-bg)] rounded-lg p-2 md:p-3 shadow-lg
+                  className={`relative bg-white rounded-lg p-2 md:p-3 shadow-lg
                     transition duration-300 hover:scale-105 hover:z-10 
                     ${getRotation(index)} ${image.order}`} // set image rotation and image order for media display
                 >
-                  <div className="aspect-square rounded-lg bg-[var(--input-border-color)] overflow-hidden">
+                  <div className="aspect-square rounded-lg bg-input-border overflow-hidden">
                     <img
                       src={image.src}
                       sizes={image.sizes}
@@ -171,7 +165,7 @@ const About = () => {
                       loading="lazy"
                     />
                   </div>
-                  <figcaption className="mt-2 text-sm font-medium text-[var(--primary-bg)] text-center">
+                  <figcaption className="mt-2 text-sm font-medium text-center text-primary">
                     {image.caption}
                   </figcaption>
                 </figure>

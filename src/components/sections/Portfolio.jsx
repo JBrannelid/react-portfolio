@@ -120,7 +120,7 @@ const Portfolio = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Loader className="w-8 h-8 animate-spin text-[var(--accent-orange-color)]" />
+        <Loader className="w-8 h-8 animate-spin text-accent-orange" />
       </div>
     );
   }
@@ -138,7 +138,7 @@ const Portfolio = () => {
             key={project.id}
             className={`group relative overflow-hidden rounded-xl bg-gradient-to-r ${project.colorTheme} 
     p-6 transform transition-all duration-300 hover:scale-[1.01] flex flex-col
-    border border-white/10 backdrop-blur-sm `}
+    border border-white/10  `}
           >
             <div className="mb-4">
               {/* Project name */}
@@ -151,8 +151,8 @@ const Portfolio = () => {
                 </span>
               </div>
               {/* Project Title */}
-              <h2 className="text-2xl font-bold mb-2">{project.name}</h2>
-              <p className="text-sm opacity-80 mb-4">
+              <h3 className="text-2xl font-bold mb-2">{project.name}</h3>
+              <p className="text-sm opacity-90 mb-4">
                 {/* Fallback if no description is available from GitHub */}
                 {project.description || "No description available"}
               </p>
@@ -161,7 +161,7 @@ const Portfolio = () => {
             <div className="mt-auto space-y-4">
               <div className="flex items-center gap-2">
                 {/* orange dot */}
-                <div className="h-3 w-3 rounded-full bg-[var(--accent-orange-color)]" />
+                <div className="h-3 w-3 rounded-full bg-accent-orange" />
                 <span className="text-sm">{project.language}</span>
               </div>
 

@@ -31,7 +31,7 @@ const Experience = () => {
   // Display the content for each job, education, or certification entry
   const TimelineContent = ({ company, location, details, skills }) => (
     <div className="pt-4">
-      <p className="text-sm text-[var(--accent1-orange-color)] mb-2">
+      <p className="text-sm text-accent1-orange mb-2">
         {company}, {location}
       </p>
       <p className="text-sm opacity-80 mb-4">{details}</p>
@@ -54,19 +54,19 @@ const Experience = () => {
   }) => (
     <div className="relative pl-8 pb-8 group">
       {/* Timeline line */}
-      <div className="absolute left-0 top-0 h-full w-0.5 bg-gradient-to-b from-[var(--accent-orange-color)] to-transparent" />
+      <div className="absolute left-0 top-0 h-full w-0.5 bg-gradient-to-b from-accent-orange to-transparent" />
 
       {/* Timeline dot */}
-      <div className="absolute left-[-4px] top-1.5 h-2 w-2 rounded-full bg-[var(--accent-orange-color)]" />
+      <div className="absolute left-[-4px] top-1.5 h-2 w-2 rounded-full bg-accent-orange" />
 
       {/* Content container */}
-      <div className="bg-white/5 rounded-lg p-4 border border-white/10 transition-all duration-300 hover:border-[var(--accent-orange-color)]/50">
+      <div className="bg-white/5 rounded-lg p-4 border border-white/10 transition-all duration-300 hover:border-accent-orange/50">
         <div className="flex flex-col gap-2">
           {/* Title and period always visible */}
           <div className="flex items-start justify-between">
             <div>
-              <h3 className="text-xl font-semibold">{title}</h3>
-              <span className="text-sm opacity-80">{period}</span>
+              <h4 className="text-xl font-semibold">{title}</h4>
+              <p className="text-sm opacity-80 pt-1">{period}</p>
             </div>
             {!alwaysExpanded && (
               <button
@@ -104,21 +104,21 @@ const Experience = () => {
     <button
       onClick={onClick}
       className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300
-        ${active ? "bg-[var(--accent-orange-color)] text-white" : "bg-white/5 hover:bg-white/10"}`}
+        ${active ? "bg-accent-orange text-white" : "bg-white/5 hover:bg-white/10"}`}
     >
       {icon}
-      <span>{label}</span>
+      <h3>{label}</h3>
     </button>
   );
 
   // Skill Tag Component - for displaying skill badges
   const SkillTag = ({ skill }) => (
-    <span
-      className="inline-block px-3 py-1 text-xs text-[var(--accent1-orange-color)] 
-                    bg-[var(--accent-orange-color)]/10 rounded-full mr-2 mb-2"
+    <p
+      className="inline-block px-3 py-1 text-xs text-accent1-orange
+                    bg-accent-orange/10 rounded-full mr-2 mb-2"
     >
       {skill}
-    </span>
+    </p>
   );
 
   return (
@@ -223,7 +223,7 @@ const Experience = () => {
               onToggle={toggleSection}
             >
               <div className="pt-4">
-                <p className="text-sm text-[var(--accent1-orange-color)] mb-2">
+                <p className="text-sm text-accent1-orange mb-2">
                   {education["Higher-Vocational-Education"].institution}
                 </p>
                 <p className="text-sm opacity-80 mb-4">
@@ -246,7 +246,7 @@ const Experience = () => {
               onToggle={toggleSection}
             >
               <div className="pt-4">
-                <p className="text-sm text-[var(--accent1-orange-color)] mb-2">
+                <p className="text-sm text-accent1-orange mb-2">
                   {education.university.institution}
                 </p>
                 {education.university.thesis && (
@@ -256,7 +256,7 @@ const Experience = () => {
                       href="https://uu.diva-portal.org/smash/record.jsf?pid=diva2%3A1085398&dswid=6631"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-[var(--accent1-orange-color)] hover:underline"
+                      className="text-sm text-accent1-orange hover:underline"
                     >
                       ➡️ {education.university.thesis}
                     </a>
@@ -283,7 +283,7 @@ const Experience = () => {
                 onToggle={toggleSection}
               >
                 <div className="pt-4">
-                  <p className="text-sm text-[var(--accent1-orange-color)] mb-2">
+                  <p className="text-sm text-accent1-orange mb-2">
                     {course.institution}
                   </p>
                   {course.credits && (
@@ -309,7 +309,7 @@ const Experience = () => {
                 alwaysExpanded={true} // These are always expanded
               >
                 <div className="pt-4">
-                  <p className="text-sm text-[var(--accent1-orange-color)] mb-2">
+                  <p className="text-sm text-accent1-orange mb-2">
                     {certificate.issuer}
                   </p>
                   {certificate.status && (

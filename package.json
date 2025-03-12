@@ -2,7 +2,7 @@
   "homepage": "https://jbrannelid.com/",
   "name": "react-portfolio",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.5.2",
   "type": "module",
   "scripts": {
     "dev": "vite",

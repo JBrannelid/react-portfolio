@@ -53,16 +53,10 @@ const Navbar = () => {
       transition-transform duration-300 ease-in-out ${isHidden ? "-translate-y-24" : "translate-y-0"}`}
     >
       {/* Desktop navigation */}
-      <div className="relative w-full hidden sm:block">
-        {/* Navbar border styling */}
-        <div className="absolute inset-0 rounded-full p-[1px] overflow-hidden">
-          <span className="absolute inset-[-1000%] bg-[var(--accent-orange-color)]" />
-        </div>
-
+      <div className="relative w-full hidden md:block">
         {/* Background and content container */}
         <div className="relative rounded-full">
-          <div className="absolute inset-[1px] rounded-full bg-[var(--nav-bg)]" />
-
+          <div className="absolute inset-[1px] rounded-full bg-nav-bg border-accent-orange border-1" />
           {/* Navigation content */}
           <div className="relative z-10 flex w-full items-center justify-between p-6">
             {/* Logo */}
@@ -72,21 +66,20 @@ const Navbar = () => {
             </div>
 
             {/* Navigation links - desktop */}
-            <div className="hidden sm:block">
-              <ul className="flex flex-row gap-6 text-center">
+            <div className="hidden md:block">
+              <ul className="flex flex-row gap-4 lg:gap-6 text-center">
                 {links.map(({ sectionPath, sectionName }) => (
                   <li key={sectionPath} className="group relative">
                     <NavLink
                       to={sectionPath}
                       className={
-                        isActive(sectionPath)
-                          ? "text-[var(--accent1-orange-color)]"
-                          : ""
+                        isActive(sectionPath) ? "text-accent1-orange" : ""
                       }
                     >
-                      <span className="relative inline-block text-base">
+                      <span className="relative inline-block text-md lg:text-base">
                         {sectionName}
-                        <div className="absolute left-0 bottom-0 bg-[var(--accent-orange-color)] w-0 group-hover:w-full h-[1px] transition-all duration-500 ease-in-out" />
+                        {/* Underline styling */}
+                        <div className="absolute left-0 bottom-0 bg-accent-orange w-0 group-hover:w-full h-[1px] transition-all duration-500 ease-in-out" />
                       </span>
                     </NavLink>
                   </li>
@@ -98,7 +91,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile navigation */}
-      <div className="relative z-10 flex w-full items-center justify-between p-6 sm:hidden">
+      <div className="relative z-10 flex w-full items-center justify-between p-6 md:hidden">
         {/* Mobile logo */}
         <div>
           <h1 className="text-4xl font-bold">JB</h1>
@@ -109,8 +102,8 @@ const Navbar = () => {
           <ul
             className="flex flex-col gap-6 text-center 
                    fixed w-[80vw] left-1/2 -translate-x-1/2 top-32
-                   bg-[var(--nav-bg)] rounded-2xl 
-                   py-8 border border-[var(--accent-orange-color)]
+                   bg-nav-bg rounded-2xl 
+                   py-8 border border-accent-orange
                    overflow-y-auto"
           >
             {links.map(({ sectionPath, sectionName }) => (
@@ -118,15 +111,11 @@ const Navbar = () => {
                 <NavLink
                   to={sectionPath}
                   onClick={toggleMenu}
-                  className={
-                    isActive(sectionPath)
-                      ? "text-[var(--accent1-orange-color)]"
-                      : ""
-                  }
+                  className={isActive(sectionPath) ? "text-accent1-orange" : ""}
                 >
                   <span className="relative inline-block text-xl">
                     {sectionName}
-                    <div className="absolute left-0 bottom-0 bg-[var(--accent-orange-color)] w-0 group-hover:w-full h-[1px] transition-all duration-500 ease-in-out" />
+                    <div className="absolute left-0 bottom-0 bg-accent-orange w-0 group-hover:w-full h-[1px] transition-all duration-500 ease-in-out" />
                   </span>
                 </NavLink>
               </li>
@@ -140,8 +129,8 @@ const Navbar = () => {
           onClick={toggleMenu}
           className="relative inline-flex h-10 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
         >
-          <span className="absolute inset-[-1000%] bg-[var(--accent-orange-color)]" />
-          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[var(--Btn-bg)] px-3 py-1 text-sm font-medium text-gray-50 backdrop-blur-3xl">
+          <span className="absolute inset-[-1000%] bg-accent-orange" />
+          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-btn-bg px-3 py-1 text-sm font-medium text-gray-50 backdrop-blur-3xl">
             {menuOpen ? (
               <X className="h-4 w-4" />
             ) : (

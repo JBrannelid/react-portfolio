@@ -6,7 +6,7 @@ import Mail from "lucide-react/dist/esm/icons/mail";
 export default function Contact() {
   // Form state with status and empty string
   const [formState, setFormState] = useState({
-    status: "idle", // Possible values: 'idle', 'sending', 'success', 'error'
+    status: "idle", //  'idle', 'sending', 'success', 'error'
     message: "",
   });
 
@@ -59,18 +59,6 @@ export default function Contact() {
     }
   };
 
-  // CSS classes for input fields - extracted for readability
-  const inputClasses = `
-    w-full p-3 mt-2 
-    bg-[var(--secondary-bg)]
-    border-2 border-[var(--accent-orange-color)] 
-    rounded-lg
-    transition-all duration-200
-    hover:border-[var(--accent1-orange-color)]
-    focus:border-[var(--accent1-orange-color)] 
-    focus:outline-none focus:ring-1
-  `;
-
   // Get status-based styling for the form feedback message
   const getStatusStyle = () => {
     const styles = {
@@ -82,10 +70,10 @@ export default function Contact() {
   };
 
   return (
-    <section className="min-h-screen">
+    <main className="min-h-screen">
       <div className="container px-6 mx-auto">
-        <div className="lg:flex lg:items-center">
-          {/* Form Section */}
+        {/* Form Section */}
+        <section className="lg:flex lg:items-center">
           <div className="lg:w-1/2 lg:mx-10">
             <h1 className="text-2xl font-semibold lg:text-3xl">Let's talk</h1>
 
@@ -105,7 +93,7 @@ export default function Contact() {
                     name="name"
                     placeholder="Name"
                     required
-                    className={inputClasses}
+                    className="inputClasses"
                   />
                 </div>
 
@@ -119,7 +107,7 @@ export default function Contact() {
                     name="email"
                     placeholder="email@example.com"
                     required
-                    className={inputClasses}
+                    className="inputClasses"
                   />
                 </div>
               </div>
@@ -130,24 +118,16 @@ export default function Contact() {
                   Write your message
                 </label>
                 <textarea
-                  className={`${inputClasses} h-32`}
                   id="message"
                   name="message"
                   placeholder="Message..."
                   required
+                  className="h-32 inputClasses"
                 />
               </div>
 
               {/* Submit button */}
-              <button
-                type="submit"
-                className="w-full h-12 mt-4 rounded-full 
-                          bg-gradient-to-r from-red-400/90 to-amber-600/90 
-                          border-2 border-transparent
-                          transition-all duration-200
-                          hover:border-[var(--accent1-orange-color)]
-                          focus:ring-1 focus:outline-none"
-              >
+              <button type="submit" className="button w-full h-12 rounded-full">
                 Get in touch
               </button>
             </form>
@@ -167,28 +147,28 @@ export default function Contact() {
             <img
               className="mt-8 rounded-full w-80 h-80 object-cover"
               src={getAssetPath("assets/portrait/IMG_2402.webp")}
-              alt="Contact illustration"
+              alt="Potrait image"
               width="320"
               height="320"
               loading="lazy"
             />
           </div>
-        </div>
+        </section>
 
         {/* Contact Email with link */}
-        <div className="flex justify-end mt-12 mb-6">
-          <div className="flex items-center gap-3 bg-white/10 px-6 py-3 rounded-full">
-            <Mail className="text-[var(--accent-orange-color)]" />
+        <section className="flex justify-end mt-12 mb-6">
+          <div className="flex items-center gap-3 bg-white/10 hover:bg-white/20  px-6 py-3 rounded-full">
+            <Mail className="text-accent-orange" />
             <a
               href="mailto:J.Brannelid@icloud.com"
-              className="text-[var(--text-color)] hover:text-[var(--accent1-orange-color)] transition-colors duration-300"
+              className="text-text transition-colors duration-300"
             >
               J.Brannelid@icloud.com
             </a>
           </div>
-        </div>
+        </section>
       </div>
-    </section>
+    </main>
   );
 }
 

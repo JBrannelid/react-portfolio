@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { SectionHeading } from "../../components/ui/SectionHeading";
 // Icon imports
 import Monitor from "lucide-react/dist/esm/icons/monitor";
 import Server from "lucide-react/dist/esm/icons/server";
@@ -55,23 +56,20 @@ const Skills = () => {
   ];
 
   return (
-    // Header
     <main className="container mx-auto px-4">
-      <header className="text-center mb-16">
-        <h2 className="text-4xl font-bold mb-4 ">Technical Skills</h2>
-        <h3 className="text-xl max-w-2xl mx-auto">
-          My technical expertise and continuous learning journey
-        </h3>
-      </header>
+      <SectionHeading
+        title="Technical Skills"
+        subtitle="My technical expertise and continuous learning journey"
+      />
       {/* Left - Code Time stats  */}
       <div className="grid md:grid-cols-2 gap-8">
         <section className="space-y-6">
-          <h2 className="text-2xl font-semibold mb-6 text-[var(--accent1-orange-color)]">
+          <h3 className="text-2xl font-semibold mb-6 text-accent1-orange">
             Activity Overview
-          </h2>
-          <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
-            <h3 className="text-xl mb-2">Coding Time Statistics</h3>
-            <p className="text-sm text-gray-400 mb-4">
+          </h3>
+          <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-800/70">
+            <h4 className="text-xl mb-2">Coding Time Statistics</h4>
+            <p className="text-sm text-white mb-4">
               Visual Studio & VS Code activity
             </p>
             <img
@@ -88,57 +86,54 @@ const Skills = () => {
         </section>
         {/* Right - Skills section  */}
         <section className="space-y-6">
-          <h2 className="text-2xl font-semibold mb-6 text-[var(--accent1-orange-color)]">
+          <h3 className="text-2xl font-semibold mb-6 text-accent1-orange">
             Skills | Ambitions Ahead
-          </h2>
-          <div className="space-y-4">
-            {skillCategories.map((category, index) => (
-              <div
-                key={index}
-                className={`rounded-xl border ${category.borderColor} ${category.bgColor} p-6 
+          </h3>
+          {skillCategories.map((category, index) => (
+            <div
+              key={index}
+              className={`rounded-xl border ${category.borderColor} ${category.bgColor} p-6 
     transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg 
-    cursor-pointer hover:border-[var(--accent-orange-color)]/50`}
-                onClick={() =>
-                  setActiveCategory(activeCategory === index ? null : index)
-                }
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    {category.icon}
-                    <div>
-                      <h3 className="text-xl font-semibold">
-                        {category.title}
-                      </h3>
-                      <p className="text-sm">{category.description}</p>
-                    </div>
+    cursor-pointer`}
+              onClick={() =>
+                setActiveCategory(activeCategory === index ? null : index)
+              }
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  {category.icon}
+                  <div>
+                    <h4 className="text-xl font-semibold">{category.title}</h4>
+                    <p className="text-sm">{category.description}</p>
                   </div>
-                  {/* arrow icon for displaying open and closed card */}
-                  <ChevronRight
-                    className={`transform transition-transform duration-300 ${
-                      activeCategory === index ? "rotate-90" : ""
-                    }`}
-                  />
                 </div>
-
-                <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    activeCategory === index
-                      ? "max-h-96 opacity-100"
-                      : "max-h-0 opacity-0"
+                {/* arrow icon for displaying open and closed card */}
+                <ChevronRight
+                  className={`transform transition-transform duration-300 ${
+                    activeCategory === index ? "rotate-90" : ""
                   }`}
-                >
-                  <div className="pt-4 space-y-3">
-                    {category.skills.map((skill, skillIndex) => (
-                      <div key={skillIndex} className="flex items-center gap-2">
-                        <Circle className="w-2 h-2" />
-                        <span>{skill.name}</span>
-                      </div>
-                    ))}
-                  </div>
+                />
+              </div>
+
+              <div
+                // Expandable card
+                className={`overflow-hidden transition-all duration-300 ${
+                  activeCategory === index
+                    ? "max-h-96 opacity-100"
+                    : "max-h-0 opacity-0"
+                }`}
+              >
+                <div className="pt-4 space-y-3">
+                  {category.skills.map((skill, skillIndex) => (
+                    <div key={skillIndex} className="flex items-center gap-2">
+                      <Circle className="w-2 h-2" />
+                      <span>{skill.name}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </section>
       </div>
     </main>

@@ -23,7 +23,7 @@ const Footer = React.lazy(() => import("./sections/Footer"));
 function LoadingSpinner() {
   return (
     <div className="flex items-center justify-center min-h-[50vh]">
-      <div className="w-12 h-12 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+      <div className="w-12 h-12 border-4 border-accent-orange border-t-transparent rounded-full animate-spin"></div>
     </div>
   );
 }
@@ -41,7 +41,7 @@ function Section({ id, children, noDivider }) {
       {/* Show divider on all sections except home and contact */}
       {!noDivider && (
         <div className="my-20">
-          <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-[var(--accent-orange-color)] to-transparent" />
+          <div className="divider" />
         </div>
       )}
     </section>
@@ -70,7 +70,7 @@ function Layout() {
   }, [location]);
 
   return (
-    <div className="relative">
+    <div className="relative overflow-x-hidden">
       {/* Fixed navigation bar */}
       <Navbar />
 

@@ -19,7 +19,7 @@ export function ThemeProvider({ children }) {
     localStorage.setItem("theme", theme);
 
     // Update mobile theme color
-    const mobileThemeColor = theme === "dark" ? "#1e2430" : "#b39b91";
+    const mobileThemeColor = theme === "dark" ? "#131b29" : "#96807a";
     document
       .querySelector('meta[name="theme-color"]')
       .setAttribute("content", mobileThemeColor);

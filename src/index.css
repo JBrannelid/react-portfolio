@@ -1,90 +1,138 @@
 @import "tailwindcss";
 @import "./fonts.css";
 
-:root {
-    color-scheme: light;
+@theme {
+  /* Basic theme colors */
+  --color-primary: #96807a;
+  --color-white: #ffffff;
+  --color-text: #ffffff;
 
-    /* Basic theme colors - Light theme by default */
-    --primary-bg: #b39b91;
-    --secondary-bg: #ffffff;
-    --text-color: #ffffff;
+  /* UI Elements */
+  --color-nav-bg: #6e5044;
+  --color-btn-bg: #5a3c2d;
 
-    /* UI Elements */
-    --nav-bg: #856455;
-    --Btn-bg: #6e4b3b;
+  /* Accent colors */
+  --color-accent-orange: #e67a0d;
+  --color-accent-yellow: #e6d500;
+  --color-accent1-orange: #e9c01b;
 
-    /* Accent colors */
-    --accent-orange-color: #ff8000;
-    --accent-yellow-color: #ffee00;
-    --accent1-orange-color: #fad11d;
+  /* Form elements */
+  --color-placeholder: #595959;
+  --color-input-border: #bfbfbf;
 
-    /* Form elements */
-    --placeholder-color: #595959;
-    --input-border-color: #bfbfbf;
+  /* Dark Mode */
+  --color-primary-dark: #131b29;
+  --color-secondary-dark: #1e2a3d;
+  --color-nav-dark: #0c131d;
+  --color-btn-dark: #1e2a3d;
+  --color-text-dark: #f0f0f0;
+  --color-input-dark-border: #5b6b84;
+  --color-placeholder-dark: #b0c0d7;
 
-    /* Dark Mode */
-    --primary-dark-bg: #1e2430;
-    --secondary-dark-bg: #2d3748;
-    --nav-dark-bg: #111827;
-    --btn-dark-bg: #2d3748;
-    --text-dark-color: #cdcdcf;
-    --input-dark-border: #4a5568;
-    --placeholder-dark-color: #a0aec0;
+  /* Fonts */
+  --font-roboto: "Roboto", sans-serif;
+  --font-josefin: "Josefin Sans", sans-serif;
 }
 
-/* Reset */
-html,
-body {
+/* Dark mode utilities */
+html.dark-mode {
+  --color-primary: var(--color-primary-dark);
+  --color-secondary-bg: var(--color-secondary-dark);
+  --color-nav-bg: var(--color-nav-dark);
+  --color-btn-bg: var(--color-btn-dark);
+  --color-text: var(--color-text-dark);
+  --color-input-border: var(--color-input-dark-border);
+  --color-placeholder: var(--color-placeholder-dark);
+}
+
+/* Base styles using Tailwind's layer directive */
+@layer base {
+  html,
+  body {
     margin: 0;
     padding: 0;
-    background: var(--primary-bg);
-    color: var(--text-color);
-    font-family: 'Roboto', sans-serif;
-}
+    background: var(--color-primary);
+    color: var(--color-text);
+    font-family: var(--font-roboto);
+  }
 
-/* Dark mode variabel-override */
-.dark-mode {
-    --primary-bg: var(--primary-dark-bg);
-    --secondary-bg: var(--secondary-dark-bg);
-    --nav-bg: var(--nav-dark-bg);
-    --btn-bg: var(--btn-dark-bg);
-    --text-color: var(--text-dark-color);
-    --input-border: var(--input-dark-border);
-    --placeholder-color: var(--placeholder-dark-color);
-}
+  /* Typs Styles */
+  h1,
+  h2 {
+    font-family: var(--font-josefin);
+  }
 
-/* Typography Styles */
-h1,
-h2 {
-    font-family: 'Josefin Sans', sans-serif;
-}
+  /* Custom Scrollbar Styling */
+  * {
+    scrollbar-color: var(--color-nav-bg) var(--color-primary);
+  }
 
-/* Custom Scrollbar Styling */
-/*  Firefox */
-* {
-    scrollbar-color: var(--nav-bg) var(--primary-bg);
-}
-
-/* Chrome, Edge, and Safari */
-::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     width: 10px;
-}
+  }
 
-::-webkit-scrollbar-track {
-    background: var(--primary-bg);
-}
+  ::-webkit-scrollbar-track {
+    background: var(--color-primary);
+  }
 
-::-webkit-scrollbar-thumb {
-    background: var(--nav-bg);
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-nav-bg);
     border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-btn-bg);
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--btn-bg);
+@layer components {
+  .section-heading {
+    @apply text-center mb-12;
+  }
+
+  .section-heading h1 {
+    @apply text-4xl font-bold mb-4;
+  }
+
+  .section-heading h2 {
+    @apply text-xl max-w-2xl mx-auto;
+  }
+}
+
+/* Utilities */
+@utility divider {
+  @apply h-0.5 
+          w-full 
+          my-20
+          bg-gradient-to-r from-transparent via-accent-orange to-transparent;
+}
+
+@utility button {
+  @apply flex 
+        items-center 
+        justify-center 
+        gap-2 
+        px-3 
+        py-1.5 
+         bg-gradient-to-r from-red-400/90 to-amber-600/90
+         sm:px-5 sm:py-2.5 
+         rounded-md 
+         hover:opacity-80 transition duration-300 whitespace-nowrap;
+}
+
+@utility inputClasses {
+  @apply w-full p-3 mt-2 
+        bg-white
+        text-black/70
+        border-2 border-accent-orange/60
+        rounded-lg
+        transition-all duration-200
+        hover:border-white
+        focus:border-white
+        focus:outline-none focus:ring-1;
 }
 
 /* In tailwind v4. Hover variant only apply when the primary input device supports hover"
 *  Touch displays computer broke hoover effect.
 *  Apply custom variant to make hover work on all devices */
-
 @custom-variant hover (&:hover);
